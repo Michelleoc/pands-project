@@ -27,6 +27,10 @@ There are 4 variables in the Iris dataset
 
 These measures were used to create a linear discriminant model to classify the species.
 
+next day - how to import iris dataset in python
+https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/
+
+
 This discriminant function performed well in discriminating between these species, except some overlap between Iris versicolor and Iris virginica. 
 The Iris setosa is noticeably different from the other two species.
 
