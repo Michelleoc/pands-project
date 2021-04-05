@@ -40,3 +40,9 @@ The dataset is often used in data mining, classification and clustering examples
 
 Information about the original paper and usages of the dataset can be found in the UCI Machine Learning Repository -- Iris Data Set.
 
+The Iris dataset consists of 50 samples each of three difference species of the iris flower: setosa, vericolor and virginica. 
+
+Each row is an observation (also known as: sample, example, instance, record)
+Each column is a feature (also known as: predictor, attribute, independent variable, input, regressor, covariate)
+https://www.ritchieng.com/machine-learning-iris-dataset/
+
