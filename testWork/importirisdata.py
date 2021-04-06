@@ -1,3 +1,12 @@
+# start here next day on histograms
+# https://www.geeksforgeeks.org/box-plot-and-histogram-exploration-on-iris-data/
+# https://campus.datacamp.com/courses/statistical-thinking-in-python-part-1/graphical-exploratory-data-analysis?ex=5
+
+# https://machinelearningmastery.com/visualize-machine-learning-data-python-pandas/
+# Multivariate Plots
+
+# https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
+
 # testing importing iris data
 # Author : Michelle O'Connor
 
@@ -61,6 +70,9 @@ from pandas.plotting import scatter_matrix
 # sns.pairplot(iris_df, hue="species")
 # plt.show()
 
+# A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
+#  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
+# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
 '''
 Just commenting out for now. Note this works and I want to show it 
 sns.pairplot(iris_df, hue="species", diag_kind="kde")
@@ -68,7 +80,7 @@ plt.show()
 ''' 
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 
-
+# Boxplot grouped by Species
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 plt.figure(figsize=(15,10))    
 plt.subplot(2,2,1)    
@@ -84,7 +96,19 @@ plt.subplot(2,2,4)
 sns.boxplot(x='species',y='petalwidthcm',data=iris_df)
 plt.show()
 
-
+# For each pair of attributes, we can use a scatter plot to visualize their joint distribution
+# http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
+fig, axes = plt.subplots(3, 2, figsize=(12,12))
+index = 0
+for i in range(3):
+    for j in range(i+1,4):
+        ax1 = int(index/2)
+        ax2 = index % 2
+        axes[ax1][ax2].scatter(iris_df[iris_df.columns[i]], iris_df[iris_df.columns[j]], color='red')
+        axes[ax1][ax2].set_xlabel(iris_df.columns[i])
+        axes[ax1][ax2].set_ylabel(iris_df.columns[j])
+        index = index + 1
+plt.show()
 
 ''' 
 data.isnull()
