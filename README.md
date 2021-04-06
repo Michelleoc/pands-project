@@ -46,4 +46,4 @@ Each row is an observation (also known as: sample, example, instance, record)
 Each column is a feature (also known as: predictor, attribute, independent variable, input, regressor, covariate)
 https://www.ritchieng.com/machine-learning-iris-dataset/
 
-![Iris flower image](iris_image.png)
+![Iris flower image] (iris_image.png)
