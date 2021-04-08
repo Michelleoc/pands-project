@@ -35,7 +35,7 @@ print(df.describe())
 
 # this is to output a summary of each variable to a single text file
 # input has to be in string format
-# class lectures
+# class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 with open(".\Variable_Summary.txt", "wt") as i:
     i.write(str(iris_df.groupby("species").describe()))
