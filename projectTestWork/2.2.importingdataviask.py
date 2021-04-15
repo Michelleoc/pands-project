@@ -17,4 +17,11 @@ from sklearn.datasets import load_iris
 
 iris = load_iris()
 
+# https://www.youtube.com/watch?v=Y17Y_8RK6pc Machine Learning in Python: Iris Classification - Part 1
+print(iris.keys())
+
+print(iris["DESCR"])
+
 print (iris)
+
+print(iris["feature_names"])

@@ -13,7 +13,14 @@ filenameForIrisData = path + "iris.csv"
 header_list = ["sepallengthcm", "sepalwidthcm", "petallengthcm", "petalwidthcm", "species"]
 df = pd.read_csv(filenameForIrisData)
 
+
+
 # Rename column titles
 # https://www.geeksforgeeks.org/python-pandas-dataframe-rename/
 iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm", "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
+
+# https://www.youtube.com/watch?v=Y17Y_8RK6pc Machine Learning in Python: Iris Classification - Part 1
+
+
 print (iris_df)
+
