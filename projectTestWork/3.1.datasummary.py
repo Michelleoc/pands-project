@@ -19,7 +19,7 @@ iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "
 # to show the shape of the dataset : (150, 5) 150 rows, 5 columns
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 print(iris_df.shape)
-
+ 
 # Shows the number of instances and the number of attributes in the dataset. 
 # There are no null values
 print(iris_df.info())
@@ -31,5 +31,3 @@ print(iris_df.groupby('species').size())
 print(df.describe())
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 # print(df.groupby('Species').size())
-
-
