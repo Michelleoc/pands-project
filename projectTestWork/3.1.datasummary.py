@@ -28,6 +28,6 @@ print(iris_df.info())
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 print(iris_df.groupby('species').size())   
 
-print(df.describe())
+print(iris_df.describe())
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-# print(df.groupby('Species').size())
+# print(iris.df.groupby('Species').size())

@@ -42,7 +42,7 @@ print(iris_df.groupby('species').size())
 
 # Shows the basic statistical details of a the dataframe (iris dataset)
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-print(df.describe())
+print(iris_df.describe())
 
 # this is to output a summary of each variable to a single text file
 # input has to be in string format
@@ -56,7 +56,7 @@ with open(".\Variable_Summary.txt", "wt") as i:
 
 # plt.figure(figsize = (10, 7)) = set the size (in inches)of the histogram
 # x = iris_df["sepallengthcm"] = defining the data input
-# plt.hist(x, bins = 20, color = "green") = plotting the histogram (x=input data, bin/column size = 20, colour of bin/column = green)
+# plt.hist(x, bins = 20, color = "green") = plotting the histogram (x=input data, bin = number of columns, colour of bin/column = green)
 # plt.title("Sepal Length in cm") = adding a title
 # plt.xlabel("Sepal Length cm") = adding a name to the xlabel (horizontal line)
 # plt.ylabel("Count") = adding a name to the ylabel (vertical line)
@@ -99,29 +99,28 @@ plt.ylabel("Count")
 # plt.savefig("Petal_Width.png")
 plt.show()
 
-# A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
-#  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
-# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
-sns.pairplot(iris_df, hue="species", diag_kind="kde")
-plt.show()
-
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 
 # Boxplot grouped by Species
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
+# To show 4 Boxplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required. 
+# The 3rd value in the subplot indicates where on the output the plot is shown, as follows 1 - Top Left, 2 - Top Right, 3 - Bottom Left, 4 - Bottom Right, 
+# for example (2,2,3) would show onthe bottom left of the output.  
+# On the plot the x axis is the species type, y axis is the attribute 
 plt.figure(figsize=(15,10))    
 plt.subplot(2,2,1)    
-sns.boxplot(x='species',y='sepallengthcm',data=iris_df)
-# plt.show()
-plt.figure(figsize=(15,10))        
+sns.boxplot(x='species',y='sepallengthcm',data=iris_df)     
 plt.subplot(2,2,2)    
-sns.boxplot(x='species',y='sepalwidthcm',data=iris_df)   
-# plt.show()
-plt.figure(figsize=(15,10))     
+sns.boxplot(x='species',y='sepalwidthcm',data=iris_df)     
 plt.subplot(2,2,3)    
-sns.boxplot(x='species',y='petallengthcm',data=iris_df)    
-# plt.show()
-plt.figure(figsize=(15,10))    
+sns.boxplot(x='species',y='petallengthcm',data=iris_df)     
 plt.subplot(2,2,4)    
 sns.boxplot(x='species',y='petalwidthcm',data=iris_df)
+plt.savefig("Box_plot.png")
+plt.show()
+
+# A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
+#  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
+# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
+sns.pairplot(iris_df, hue="species", diag_kind="kde")
 plt.show()

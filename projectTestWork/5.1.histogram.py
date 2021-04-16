@@ -46,7 +46,7 @@ plt.show()
 
 plt.figure(figsize = (10, 7))
 x = iris_df["petalwidthcm"]
-plt.hist(x, bins = 20, color = "blue")
+plt.hist(x, bins =20, color = "blue")
 plt.title("Petal Width in cm")
 plt.xlabel("Petal Width cm")
 plt.ylabel("Count")

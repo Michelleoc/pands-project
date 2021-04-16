@@ -19,6 +19,7 @@ iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "
 #  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
 # https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
 sns.pairplot(iris_df, hue="species", diag_kind="kde")
+# sns.pairplot(iris_df, hue="species", diag_kws={Petal, "kde")
 plt.show()
 
 from pandas.plotting import scatter_matrix

@@ -33,6 +33,9 @@ print(df.describe())
 # print(df.groupby('Species').size())
 
 
+
+print(iris_df.groupby("species").describe())
+
 # this is to output a summary of each variable to a single text file
 # input has to be in string format
 # class lectures showed how to export to a newly created txt file
