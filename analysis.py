@@ -5,7 +5,7 @@ import pandas as pd             # data processing and csv file i/o library
 import numpy as np              # 
 import seaborn as sns           # 
 import matplotlib.pyplot as plt # plotting library
-from sklearn import model_selection # Python graphing libbrary based on matplotlib
+from sklearn import model_selection # Python graphing library based on matplotlib
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
