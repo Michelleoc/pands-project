@@ -36,4 +36,4 @@ print(iris_df.duplicated().sum())
 
 print (iris_df[iris_df.duplicated()])
 
-print(iris_df.head())
+

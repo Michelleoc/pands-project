@@ -23,5 +23,6 @@ print(iris_df.corr())
 
 # To show the values on the heatmap, insert "annot = True"
 # cmap to pick the colour palette of your choice
-sns.heatmap(iris_df.corr(), annot = True, cmap = 'summer') 
+plt.figure(figsize=(15,10))
+sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
 plt.show()

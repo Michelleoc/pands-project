@@ -21,8 +21,7 @@ print(iris_df.duplicated().sum())
 print (iris_df[iris_df.duplicated()])
 
 # plt.title('Species Count')
-sns.countplot(iris_df['species'])
-plt.show()
+
 
 plt.figure(figsize=(16,9))
 plt.title('Comparison between sepal width and length on the basis of species')
@@ -76,3 +75,5 @@ Note the diagonal grouping of some pairs of attributes. This suggests a high cor
 
     4.4 Violinplot - Density of the length and width in the species
 '''
+
+# http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html - separate

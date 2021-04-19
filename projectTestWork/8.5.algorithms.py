@@ -177,3 +177,5 @@ print(classification_report(y_test, predictions))
 # recall, f1-score and support showing excellent results (granted the validation dataset was small).
 
 # https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+
+# https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3

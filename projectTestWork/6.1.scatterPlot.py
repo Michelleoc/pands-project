@@ -29,3 +29,6 @@ for i in range(3):
         axes[ax1][ax2].set_ylabel(iris_df.columns[j])
         index = index + 1
 plt.show()
+
+# plt.pairs(iris_df)
+# plt.show()
