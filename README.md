@@ -183,7 +183,7 @@ I then build upon this to extract different views of the data:
         103            6.3           2.9            5.6           1.8  Iris-virginica
         104            6.5           3.0            5.8           2.2  Iris-virginica  
 
-    ![](images/Iris_Image.png)        
+    ![](images/2.2.First5rows.png)        
 
 * Show the summary of each variable by the species  
         print(iris_df.groupby("species").describe())
