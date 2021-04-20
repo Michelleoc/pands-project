@@ -14,7 +14,7 @@ header_list = ["sepallengthcm", "sepalwidthcm", "petallengthcm", "petalwidthcm",
 df = pd.read_csv(filenameForIrisData)
 iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm", "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
 # print (iris_df)
-
+'''
 # Saves a histogram of each variable to png files
 # https://www.geeksforgeeks.org/box-plot-and-histogram-exploration-on-iris-data/
 plt.figure(figsize = (10, 7))
@@ -51,5 +51,18 @@ plt.title("Petal Width in cm")
 plt.xlabel("Petal Width cm")
 plt.ylabel("Count")
 # plt.savefig("Petal_Width.png")
+plt.show()
+'''
+
+
+# histograms by species 
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
+plt.savefig("Petal_Length.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petalwidthcm").add_legend()
+plt.savefig("Petal_Width.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepallengthcm").add_legend()
+plt.savefig("Sepal_Length.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+plt.savefig("Sepal_Width.png")
 plt.show()
 

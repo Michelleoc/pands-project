@@ -2,9 +2,11 @@
 
 # Author : Michelle O'Connor
 
-# Programs to be installed  
+ Programs to be installed  
 
 # Contents
+
+0.0 Project Outline  
 
 1.0 Introduction   
  - 1.1 History of Iris Dataset
@@ -19,43 +21,59 @@
  - 3.2 Boxplots   
  - 3.3 Scatterplot  
 
-4.0 
+4.0    
 
+6.0 Conclusion  
+
+
+# 0.0 Project Outline  
+
+The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
+The project task was to investigate, analyse and present my findings on the dataset using python. 
 
 # 1.0 Introduction
 
 ## 1.1 History of Iris Dataset  
 
-The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician, eugenicist, and biologist Ronald Fisher in his 1936 paper __The use of multiple measurements in taxonomic problems__ as an example of linear discriminant analysis.  
+The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician, eugenicist, and biologist Ronald Fisher in his 1936 paper **__The use of multiple measurements in taxonomic problems__** as an example of linear discriminant analysis. It is sometimes called Anderson's Iris data set because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species.     
 
 The Iris dataset consists of the following:
 
-50 samples of 3 different species of Iris where used in the dataset (total 150 samples)  
+50 samples of 3 different species (total 150 samples):  
     1.Iris setosa   
     2.Iris Virginica  
     3.Iris Veriscolor  
 
-There are 4 variables measured in the Iris dataset were   
+4 variables were measured:    
     1.Length of sepals (cm)  
     2.Width of sepals (cm)   
     3.Length of petals (cm)  
-    4.Width of petals (cm)   
+    4.Width of petals (cm)    
+
+Two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus"  
+
+Why is it famous:  
+The Iris flower data set is a well-known data set example for data mining and data exploration, it's also often used to demonstrate simple machine learning techniques.
 
 
 ## 1.2 Use of Iris Dataset 
 
+The Iris dataset is the “hello world” of Machine Learning.
+“Hello World” is often the first program written by people learning to code, the iris dataset is generally the first dataset used as an introduction into Machine Learning.   
+
 Based on the combination of the features (Sepal Lenght, Sepal Width, Petal Length, Petal Width), Fisher developed a linear discriminant model to distinguish the species from each other based on the morphology of their flowers.  
 
 This discriminant function performed well in discriminating between these species, except some overlap between Iris versicolor and Iris virginica. 
-The Iris setosa is noticeably different from the other two species.
+The Iris setosa is noticeably different from the other two species.  These measures were used to create a linear discriminant model to classify the species.
 
+
+The dataset is often used in data mining, classification and clustering examples and to test algorithms.
 Using this linear discriminant model, this data set became a typical test case for many statistical classification techniques in machine learning and became the “hello world” of Machine Learning.
 
-“Hello World” is often the first program written by people learning to code, the iris dataset is generally the first dataset used as an introduction into Machine Learning. 
+“Hello World” is often the first program written by people learning to codea and the iris dataset is generally the first dataset used as an introduction into Machine Learning. 
 
 References
-These measures were used to create a linear discriminant model to classify the species.
-The dataset is often used in data mining, classification and clustering examples and to test algorithms.
+
 
 
 https://www.ritchieng.com/machine-learning-iris-dataset/
@@ -72,7 +90,7 @@ https://www.youtube.com/watch?v=hHbWF1Bvgf4
 ## 2.1 Loading the dataset  
 The Iris dataset is widely available on the internet. The dataset is included in R base and Python in the machine learning package Scikit-learn, so that users can access it without having to find a source for it.  
 
-For this project, however I am treating the iris dataset as dataset that needs to be loaded in so I use pandas to import the data from a csv file and create a dataframe.    
+I am treating the iris dataset as a dataset that needs to be loaded so I use pandas to import the data from a csv file and create a dataframe.    
 I rename the columns so that they include the measurement type 'cm' in the title and I rename the class column to species. 
 
     path = ""
@@ -81,9 +99,10 @@ I rename the columns so that they include the measurement type 'cm' in the title
     iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm",   
     "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
 
-## 2.2 Understanding the dataset   
+## 2.2 Understanding the dataset    
 
-To start with understanding the dataset, I preview a sample of the data, for example the first 5 rows
+The first part of investigating a dataset, starts with an initial understanding of the dataset.  
+I preview a sample of the data, for example the first 5 rows
     print(iris_df.head(5))   
             sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm      species  
         0            5.1           3.5            1.4           0.2  Iris-setosa  
@@ -92,7 +111,7 @@ To start with understanding the dataset, I preview a sample of the data, for exa
         3            4.6           3.1            1.5           0.2  Iris-setosa   
         4            5.0           3.6            1.4           0.2  Iris-setosa    
 
-This shows the dataset has 5 columns and an unknown quantity of the rows.
+This shows the dataset has 5 columns (Sepal Length, Sepal width, Petal Length, Petal Width, Species) and an unknown quantity of the rows.
 
 I then build upon this to extract different views of the data:  
 
@@ -143,6 +162,31 @@ I then build upon this to extract different views of the data:
         max       7.900000    4.400000     6.900000    2.500000
 
 
+* Show the first 5 rows of each type of species
+
+        print(iris_df[0:5])
+        print(iris_df[50:55])
+        print(iris_df[100:105])   
+
+           sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm      species
+        0            5.1           3.5            1.4           0.2  Iris-setosa
+        1            4.9           3.0            1.4           0.2  Iris-setosa
+        2            4.7           3.2            1.3           0.2  Iris-setosa
+        3            4.6           3.1            1.5           0.2  Iris-setosa
+        4            5.0           3.6            1.4           0.2  Iris-setosa
+            sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm          species
+        50            7.0           3.2            4.7           1.4  Iris-versicolor
+        51            6.4           3.2            4.5           1.5  Iris-versicolor
+        52            6.9           3.1            4.9           1.5  Iris-versicolor
+        53            5.5           2.3            4.0           1.3  Iris-versicolor
+        54            6.5           2.8            4.6           1.5  Iris-versicolor
+            sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm         species
+        100            6.3           3.3            6.0           2.5  Iris-virginica
+        101            5.8           2.7            5.1           1.9  Iris-virginica
+        102            7.1           3.0            5.9           2.1  Iris-virginica
+        103            6.3           2.9            5.6           1.8  Iris-virginica
+        104            6.5           3.0            5.8           2.2  Iris-virginica
+
 * Show the summary of each variable by the species  
         print(iris_df.groupby("species").describe())
 
@@ -152,34 +196,46 @@ I then build upon this to extract different views of the data:
             with open(".\Variable_Summary.txt", "wt") as i:
             i.write(str(iris_df.groupby("species").describe()))
 
+Summary of the intial findings show a dataset of 50 rows each for 3 different species of the Iris flower, with no null values in the dataset.  
+The statisical details of the dataset show that the mean range from 5.84 on the sepal length down to 1.19 on the petal width.  
+However when we run the summary by species, due to the variation on the length and width by species, the petal length and petal width might be the best indicators to differentiate the species.  
+
 
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
+https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
 
 # 3.0 Data Visualisation 
 
-With a basic understanding of the data, we move to data visualisation to help us compare and observe trends within the data.
+With a basic understanding of the dataset, we move to data visualisation to help us compare and observe trends within the data.  
 
-There are many visualation options within python using matplotlib and seaborn. 
+There are many visualation options within python using matplotlib and seaborn.    
 
-## 3.1 Historgrams  
+## 3.1 Univariate Analysis  
 
-Histograms show the distribution of the number of instances by each individual attribute. 
+Univariate analysis is the simplest form of analyzing data.   
+“Uni” means “one”, so in other words your data has only one variable. It doesn’t deal with causes or relationships (unlike regression) and it’s major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. 
 
-    Code to display a histogram for the sepal length:
-    plt.figure(figsize = (10, 7)) = set the size (in inches) of the histogram
-    x = iris_df["sepallengthcm"] = defining the data input
-    plt.hist(x, bins = 20, color = "green") = plotting the histogram (x=input data, bin = number of columns, colour of bin/column = green)
-    plt.title("Sepal Length in cm") = adding a title
-    plt.xlabel("Sepal Length cm") = adding a name to the xlabel (horizontal line)
-    plt.ylabel("Count") = adding a name to the ylabel (vertical line)
-    plt.savefig("Sepal_Length.png") = saving the histogram as an image to the folder
-    plt.show() = displaying the histogram
+### 3.1.1 Historgrams  
+
+Histograms is a classic visualisation tool that show the distribution of the number of observations that fall within a bin.  
+
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
+    plt.savefig("Petal_Length.png")
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petalwidthcm").add_legend()
+    plt.savefig("Petal_Width.png")
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepallengthcm").add_legend()
+    plt.savefig("Sepal_Length.png")
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+    plt.savefig("Sepal_Width.png")
+    plt.show()   
+
+The outputting plots show that the petal length and petal width can be used to differeniate the species setosa from the other 2 species.  
 
 
-## 3.2 Boxplot  
+### 3.1.2 Boxplot  
 
 Boxplot show the range the individual attributes fall into, it represents the minimum, first quartile (25% or lower), median, third quartile (75% or upper) and maximum of the dataset.  
 The box on the plot shows between the first (25%) and third quartile (75%) on the range. The horizontal line that goes through the box is the median.  
@@ -202,16 +258,18 @@ On the plot the x axis is the species type, y axis is the attribute
     plt.subplot(2,2,4)    
     sns.boxplot(x='species',y='petalwidthcm',data=iris_df)
     plt.savefig("Box_plot.png")
-    plt.show()
+    plt.show()   
+
+__Insert images__  
 
 
 Analyising the box plots, the sepal length and sepal width data results are close, with some overlap between all 3 species.   
-However for the petal length and petal width, the Iris Setosa is visually clearly different from the Veriscolor and Virginica.   
-The Iris Setosa petal length and petal width attributes data do not overlap with the Veriscolor and Virginica.  
+However similiar to the initial view of the dataset and the histograms, the box plots show us that for Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
+The Iris Setosa petal length and petal width attributes data do not overlap with the Veriscolor and Virginica  
 
 ![](Box_plot.png)  
 
-##  3.3 Violinplot  
+### 3.1.3 Violinplot  
 
 The Violinplot groups by species, similar to the boxplot it shows how the length and width vary according to the species.  
 However the violinplot show the density of the results, the thinner part shows that there is less occurances whereas the fatter part conveys higher density or high occurences.  
@@ -229,9 +287,17 @@ On the plot the x axis is the species type, y axis is the attribute
     sns.violinplot(x='species',y='sepallengthcm',data=iris_df)
     plt.subplot(2,2,4)
     sns.violinplot(x='species',y='sepalwidthcm',data=iris_df)
-    plt.show()
+    plt.show()  
 
-## 3.3 Scatterplot (Pairsplot)  
+Summary of Univariate analysis, shows for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.  
+
+
+## 3.2 Multivariate analysis   
+
+Multivariate analysis helps us understand the relationships between attributes & species better, i.e. which attributes contributes a lot in classifying species.  
+
+
+### 3.2.1 Scatterplot (Pairsplot)  
 
 Scatter plot is very useful when we are analyzing the relationship between 2 features on x and y axis.
 In seaborn library there is a pairplot function which is very useful to scatter plot all the features at once instead of plotting them individually.  
@@ -244,7 +310,7 @@ For each pair of attributes, we can use a scatter plot to visualize their joint 
 sns.pairplot(iris_df, hue="species", diag_kind="kde")  
 plt.show()  
 
-## 3.4 Correlation and Heatmaps  
+### 3.2.2 Correlation and Heatmaps  
 
 A Heatmap is used to show correlation. 
 
@@ -259,7 +325,9 @@ The output shows that Sepal Width and Length are not correlated, and Petal Width
 https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
 https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
 http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
-https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/  
+https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
+https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
+https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
 
 # 4.0 Train and Validate the data (Machine learning)  
 
@@ -303,7 +371,7 @@ y_train is 25% of 150 = 38 rows of the species column
     print("X_test shape: {}".format(X_test.shape))
     print("y_test shape: {}".format(y_test.shape))   
 
-**Step 3 - Select an algorithm** 
+**Step 3 - Select an algorithm**   
 I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
 k is the number of nearest neighbours and is the core deciding factor. K is set by the user, we can consider any fixed number k of neighbors in the training.   
 The algorithm calculates the distance between the new data point with the training examples.  
@@ -371,7 +439,8 @@ I will test 6 different algorithms, this is a good mixture of simple linear (LR 
     models.append(('NB', GaussianNB()))
     models.append(('SVM', SVC(gamma='auto')))
 
-# evaluate each model in turn insert notes 
+NOTE NOTE NOTE evaluate each model in turn insert notes  
+
     results = []
     names = []
     for name, model in models:
@@ -390,7 +459,7 @@ A useful way to compare the samples of results for each algorithm is to create a
 
 We can see that the box and whisker plots are squashed at the top of the range, with many evaluations achieving 100% accuracy, and some pushing down into the high 80% accuracies.  
 
-# Make predictions on test/validation dataset 
+NOTE NOTE NOTE Make predictions on test/validation dataset 
 
 **Step 8 - Final model selection**    
 

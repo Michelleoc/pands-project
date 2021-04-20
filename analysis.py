@@ -44,7 +44,13 @@ print(iris_df.groupby('species').size())
 
 # Shows the basic statistical details of a the dataframe (iris dataset)
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-print(iris_df.describe())
+print(iris_df.describe())  
+
+# Shows the first 5 rows of each type of species
+# https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/
+print(iris_df[0:5])
+print(iris_df[50:55])
+print(iris_df[100:105])
 
 # this is to output a summary of each variable to a single text file
 # input has to be in string format
@@ -53,53 +59,25 @@ print(iris_df.describe())
 with open(".\Variable_Summary.txt", "wt") as i:
     i.write(str(iris_df.groupby("species").describe()))
 
-# Plotting, displaying and saving a histogram of each variable to png files
+# Plotting, displaying and saving a histogram of each variable to png files  
+# https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
 # https://www.geeksforgeeks.org/box-plot-and-histogram-exploration-on-iris-data/
 
-# plt.figure(figsize = (10, 7)) = set the size (in inches)of the histogram
-# x = iris_df["sepallengthcm"] = defining the data input
-# plt.hist(x, bins = 20, color = "green") = plotting the histogram (x=input data, bin = number of columns, colour of bin/column = green)
-# plt.title("Sepal Length in cm") = adding a title
-# plt.xlabel("Sepal Length cm") = adding a name to the xlabel (horizontal line)
-# plt.ylabel("Count") = adding a name to the ylabel (vertical line)
-# plt.savefig("Sepal_Length.png") = saving the histogram as an image to the folder
-# plt.show() = displaying the histogram
+# iris_df = defining the data input
+# hue - Variable that determines the colour of the plot elements, in this case it is species  
+# plt.savefig = saving the histogram as an image to the folder  
+# plt.show() = displaying the histogram  
 
-plt.figure(figsize = (10, 7))
-x = iris_df["sepallengthcm"]
-plt.hist(x, bins = 20, color = "green")
-plt.title("Sepal Length in cm")
-plt.xlabel("Sepal Length cm")
-plt.ylabel("Count")
-# plt.savefig("Sepal_Length.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
+plt.savefig("Petal_Length.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petalwidthcm").add_legend()
+plt.savefig("Petal_Width.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepallengthcm").add_legend()
+plt.savefig("Sepal_Length.png")
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+plt.savefig("Sepal_Width.png")
 plt.show()
 
-plt.figure(figsize = (10, 7))
-x = iris_df["sepalwidthcm"]
-plt.hist(x, bins = 20, color = "red")
-plt.title("Sepal Width in cm")
-plt.xlabel("Sepal Width cm")
-plt.ylabel("Count")
-# plt.savefig("Sepal_Width.png")
-plt.show()
-
-plt.figure(figsize = (10, 7))
-x = iris_df["petallengthcm"]
-plt.hist(x, bins = 20, color = "yellow")
-plt.title("Petal Length in cm")
-plt.xlabel("Petal Length cm")
-plt.ylabel("Count")
-# plt.savefig("Petal_Length.png")
-plt.show()
-
-plt.figure(figsize = (10, 7))
-x = iris_df["petalwidthcm"]
-plt.hist(x, bins = 20, color = "blue")
-plt.title("Petal Width in cm")
-plt.xlabel("Petal Width cm")
-plt.ylabel("Count")
-# plt.savefig("Petal_Width.png")
-plt.show()
 
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 
