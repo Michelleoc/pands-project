@@ -50,27 +50,23 @@ The Iris dataset consists of the following:
     3.Length of petals (cm)  
     4.Width of petals (cm)    
 
-Two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus"  
+Two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus"    
 
-Why is it famous:  
-The Iris flower data set is a well-known data set example for data mining and data exploration, it's also often used to demonstrate simple machine learning techniques.
+![](Iris_Image.png)  
 
 
 ## 1.2 Use of Iris Dataset 
 
-The Iris dataset is the “hello world” of Machine Learning.
+Why is the Iris dataset so well know, this dataset is the “hello world” of Machine Learning.
 “Hello World” is often the first program written by people learning to code, the iris dataset is generally the first dataset used as an introduction into Machine Learning.   
 
 Based on the combination of the features (Sepal Lenght, Sepal Width, Petal Length, Petal Width), Fisher developed a linear discriminant model to distinguish the species from each other based on the morphology of their flowers.  
 
 This discriminant function performed well in discriminating between these species, except some overlap between Iris versicolor and Iris virginica. 
-The Iris setosa is noticeably different from the other two species.  These measures were used to create a linear discriminant model to classify the species.
+The Iris setosa is noticeably different from the other two species. 
 
-
-The dataset is often used in data mining, classification and clustering examples and to test algorithms.
-Using this linear discriminant model, this data set became a typical test case for many statistical classification techniques in machine learning and became the “hello world” of Machine Learning.
-
-“Hello World” is often the first program written by people learning to codea and the iris dataset is generally the first dataset used as an introduction into Machine Learning. 
+Therefore the dataset is often used in data mining, classification and clustering examples and to test algorithms.
+ 
 
 References
 
@@ -83,7 +79,7 @@ http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 
 Adding image to Github read me file  
 https://www.youtube.com/watch?v=hHbWF1Bvgf4
-![](Iris_Image.png)
+
 
 # 2.0 Loading and understanding the Iris dataset:
 
@@ -185,7 +181,9 @@ I then build upon this to extract different views of the data:
         101            5.8           2.7            5.1           1.9  Iris-virginica
         102            7.1           3.0            5.9           2.1  Iris-virginica
         103            6.3           2.9            5.6           1.8  Iris-virginica
-        104            6.5           3.0            5.8           2.2  Iris-virginica
+        104            6.5           3.0            5.8           2.2  Iris-virginica  
+
+    ![](images/Iris_Image.png)        
 
 * Show the summary of each variable by the species  
         print(iris_df.groupby("species").describe())
@@ -336,7 +334,7 @@ Once trained on known data, the machine learning model can make a predictive cla
 
 Steps To Be followed When Applying an Algorithm.  
 1. Split the dataset into training and testing dataset.  
-2. The testing dataset is generally smaller than training one as it will help in training the model better. I have chose a 75%:25% training:testing split.  
+2. The testing dataset is generally smaller than training one as it will help in training the model better. I have chosen a 75%:25% training:testing split.  
 3. Select an algorithm based on the problem (classification or regression). 
 4. Pass the training dataset to the algorithm to train it, use the .fit() method.  
 5. Then pass the testing data to the trained algorithm to predict the outcome, use the .predict() method.  
