@@ -164,26 +164,7 @@ I then build upon this to extract different views of the data:
         print(iris_df[50:55])
         print(iris_df[100:105])   
 
-           sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm      species
-        0            5.1           3.5            1.4           0.2  Iris-setosa
-        1            4.9           3.0            1.4           0.2  Iris-setosa
-        2            4.7           3.2            1.3           0.2  Iris-setosa
-        3            4.6           3.1            1.5           0.2  Iris-setosa
-        4            5.0           3.6            1.4           0.2  Iris-setosa
-            sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm          species
-        50            7.0           3.2            4.7           1.4  Iris-versicolor
-        51            6.4           3.2            4.5           1.5  Iris-versicolor
-        52            6.9           3.1            4.9           1.5  Iris-versicolor
-        53            5.5           2.3            4.0           1.3  Iris-versicolor
-        54            6.5           2.8            4.6           1.5  Iris-versicolor
-            sepallengthcm  sepalwidthcm  petallengthcm  petalwidthcm         species
-        100            6.3           3.3            6.0           2.5  Iris-virginica
-        101            5.8           2.7            5.1           1.9  Iris-virginica
-        102            7.1           3.0            5.9           2.1  Iris-virginica
-        103            6.3           2.9            5.6           1.8  Iris-virginica
-        104            6.5           3.0            5.8           2.2  Iris-virginica  
-
-![](images/2.2.First5rows.PNG)        
+    ![](images/2.2.First5rows.PNG)        
 
 * Show the summary of each variable by the species  
         print(iris_df.groupby("species").describe())
