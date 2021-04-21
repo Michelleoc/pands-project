@@ -64,8 +64,9 @@ with open(".\Variable_Summary.txt", "wt") as i:
 # https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
 # https://www.geeksforgeeks.org/box-plot-and-histogram-exploration-on-iris-data/
 
+# FacetGrid within Seaborn is a multi-plot grid to help visualise distribution of a variable
 # iris_df = defining the data input
-# hue - Variable that determines the colour of the plot elements, in this case it is species  
+# hue - allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual  
 # plt.savefig = saving the histogram as an image to the folder  
 # plt.show() = displaying the histogram  
 
