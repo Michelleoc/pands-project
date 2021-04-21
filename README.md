@@ -332,7 +332,7 @@ y_train is 25% of 150 = 38 rows of the species column
     print("X_test shape: {}".format(X_test.shape))
     print("y_test shape: {}".format(y_test.shape))     
 
-    ![](images/4.0.2.traintestshape.PNG)   
+![](images/4.0.2.traintestshape.PNG)   
 
 **Step 3 - Select an algorithm**   
 I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
@@ -352,7 +352,7 @@ We enter sample data (X_new) and show the shape of the data, it is one row (1 sa
     X_new = np.array([[5, 2.9, 1, 0.2]])  
     print("X_new.shape: {}".format(X_new.shape))     
 
-    ![](images/4.0.4.trainingshape.PNG)   
+![](images/4.0.4.trainingshape.PNG)   
 
 **Step 5 - Predict Species**   
 
@@ -362,7 +362,7 @@ I now use the predict method of the knn object to predict the species of the sam
     print("Prediction: {}".format(prediction))
     print("Predicted target name: {}".format(iris['target_names'][prediction]))    
 
-    ![](images/4.0.5.predictspecies.PNG)   
+![](images/4.0.5.predictspecies.PNG)   
 
 **Step 6 - Check model accuracy** 
 
@@ -379,13 +379,13 @@ And then compare the prediction of the species 'y_pred' to the actual species 'y
     print("Test set predictions:\n {}".format(y_pred))
     print("Test set score (np.mean): {:.2f}".format(np.mean(y_pred == y_test)))  
 
-    ![](images/4.0.6.PNG) 
+![](images/4.0.6.PNG) 
 
 Another way to do this would be to use the score method of the knn object, which will compute the test set accuracy 
 
     print("Test set score (knn.score): {:.2f}".format(knn.score(X_test, y_test)))  
 
-    ![](images/4.0.6.knntestscore.PNG)   
+![](images/4.0.6.knntestscore.PNG)   
 
 
 
@@ -420,7 +420,7 @@ NOTE NOTE NOTE evaluate each model in turn insert notes
         names.append(name)
         print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))  
 
-    ![](images/4.0.7.modelcomparison.PNG)   
+![](images/4.0.7.modelcomparison.PNG)   
 
 We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model.  
 A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
@@ -429,7 +429,7 @@ A useful way to compare the samples of results for each algorithm is to create a
     plt.title('Algorithm Comparison')
     plt.show()    
 
-    ![](images/4.0.7.boxplots.PNG)   
+![](images/4.0.7.boxplots.PNG)   
 
 We can see that the box and whisker plots are squashed at the top of the range, with many evaluations achieving 100% accuracy, and some pushing down into the high 80% accuracies.  
 
@@ -453,7 +453,7 @@ We can evaluate the predictions by comparing them to the expected results in the
     print(confusion_matrix(y_test, predictions))
     print(classification_report(y_test, predictions))    
 
-    ![](images/4.0.7.finalmodelselection.PNG)   
+![](images/4.0.7.finalmodelselection.PNG)   
 
 We can see that the accuracy is 1.0 or about 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
 Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
