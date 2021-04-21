@@ -34,6 +34,11 @@ print(iris_df.describe())
 
 print(iris_df.duplicated().sum())
 
-print (iris_df[iris_df.duplicated()])
+print (iris_df[iris_df.duplicated()])  
+
+plt.title('Species Count')
+sns.countplot(iris_df['species'])
+plt.show()
+
 
 

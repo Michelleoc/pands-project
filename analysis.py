@@ -9,14 +9,15 @@ from sklearn import model_selection # Python graphing library based on matplotli
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression # # for Logistic Regression algorithm
+from sklearn.tree import DecisionTreeClassifier #for using Decision Tree Algoithm
+from sklearn.neighbors import KNeighborsClassifier # for K nearest neighbours
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC
+from sklearn.svm import SVC #for Support Vector Machine (SVM) Algorithm
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split #to split the dataset for training and testing
 
 # Import the dataset from iris.csv file 
 path = ""
@@ -25,7 +26,7 @@ df = pd.read_csv(filenameForIrisData)
 
 # Rename column titles
 # https://www.geeksforgeeks.org/python-pandas-dataframe-rename/
-iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm", "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
+iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)", "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
 
 # To show the full list print (iris_df), but for now I just want to see the first 5 rows of data 
 print(iris_df.head(5))   
@@ -68,13 +69,13 @@ with open(".\Variable_Summary.txt", "wt") as i:
 # plt.savefig = saving the histogram as an image to the folder  
 # plt.show() = displaying the histogram  
 
-sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_length(cm)").add_legend()
 plt.savefig("Petal_Length.png")
-sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petalwidthcm").add_legend()
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_width(cm)").add_legend()
 plt.savefig("Petal_Width.png")
-sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepallengthcm").add_legend()
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_length(cm)").add_legend()
 plt.savefig("Sepal_Length.png")
-sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_width(cm)").add_legend()
 plt.savefig("Sepal_Width.png")
 plt.show()
 
@@ -89,13 +90,13 @@ plt.show()
 # On the plot the x axis is the species type, y axis is the attribute 
 plt.figure(figsize=(15,10))    
 plt.subplot(2,2,1)    
-sns.boxplot(x='species',y='sepallengthcm',data=iris_df)     
+sns.boxplot(x='species',y='Sepal_length(cm)',data=iris_df)     
 plt.subplot(2,2,2)    
-sns.boxplot(x='species',y='sepalwidthcm',data=iris_df)     
+sns.boxplot(x='species',y='Sepal_width(cm)',data=iris_df)     
 plt.subplot(2,2,3)    
-sns.boxplot(x='species',y='petallengthcm',data=iris_df)     
+sns.boxplot(x='species',y='Petal_length(cm)',data=iris_df)     
 plt.subplot(2,2,4)    
-sns.boxplot(x='species',y='petalwidthcm',data=iris_df)
+sns.boxplot(x='species',y='Petal_width(cm)',data=iris_df)
 plt.savefig("Box_plot.png")
 plt.show()
 
@@ -114,19 +115,22 @@ plt.show()
 # On the plot the x axis is the species type, y axis is the attribute 
 plt.figure(figsize=(15,10))
 plt.subplot(2,2,1)
-sns.violinplot(x='species',y='petallengthcm',data=iris_df)
+sns.violinplot(x='species',y='Petal_length(cm)',data=iris_df)
 plt.subplot(2,2,2)
-sns.violinplot(x='species',y='petalwidthcm',data=iris_df)
+sns.violinplot(x='species',y='Petal_width(cm)',data=iris_df)
 plt.subplot(2,2,3)
-sns.violinplot(x='species',y='sepallengthcm',data=iris_df)
+sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
 plt.subplot(2,2,4)
-sns.violinplot(x='species',y='sepalwidthcm',data=iris_df)
+sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
 plt.show()
 
 # to show correlation 
 print(iris_df.corr())
 
-# Heatmap used to show correlation 
+# Heatmap used to show correlation. 
+# As I plan to train algorithms, the number of features and their correlation plays an important role. 
+# If there are features and many of the features are highly correlated, then training an algorithm with all the featues will reduce the accuracy. 
+# Thus features selection should be done carefully. This dataset has less featues but still we will see the correlation. 
 # https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/
 
 # To show the values on the heatmap, insert "annot = True"
@@ -150,7 +154,7 @@ y=iris.target
 # X_test, y_test for testing the model
 
 
-from sklearn.model_selection import train_test_split
+
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
 
 # https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3

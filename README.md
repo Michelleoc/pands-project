@@ -92,8 +92,8 @@ I rename the columns so that they include the measurement type 'cm' in the title
     path = ""
     filenameForIrisData = path + "iris.csv"
     df = pd.read_csv(filenameForIrisData)
-    iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm",   
-    "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
+    iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)",   
+    "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
 
 ## 2.2 Understanding the dataset    
 
@@ -181,19 +181,22 @@ Univariate analysis is the simplest form of analyzing data.
 
 Histograms is a classic visualisation tool that show the distribution of the number of observations that fall within a bin.  
 
-    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_length(cm)").add_legend()
     plt.savefig("Petal_Length.png")
-    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petalwidthcm").add_legend()
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_width(cm)").add_legend()
     plt.savefig("Petal_Width.png")
-    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepallengthcm").add_legend()
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_length(cm)").add_legend()
     plt.savefig("Sepal_Length.png")
-    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+    sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_width(cm)").add_legend()
     plt.savefig("Sepal_Width.png")
     plt.show()   
 
+![](images/3.1.1.Histogram_PetalLength.PNG) 
+![](images/3.1.1.Histogram_PetalWidth.PNG) 
+![](images/3.1.1.Histogram_SepalLength.PNG) 
+![](images/3.1.1.Histogram_SepalWidth.PNG) 
+
 The outputting plots show that the petal length and petal width can be used to differeniate the species setosa from the other 2 species.    
-
-
 
 
 ### 3.1.2 Boxplot  
@@ -211,13 +214,13 @@ On the plot the x axis is the species type, y axis is the attribute
 
     plt.figure(figsize=(15,10)) = set the size of the boxplot 
     plt.subplot(2,2,1)    
-    sns.boxplot(x='species',y='sepallengthcm',data=iris_df)
+    sns.boxplot(x='species',y='Sepal_length(cm)',data=iris_df)
     plt.subplot(2,2,2)    
-    sns.boxplot(x='species',y='sepalwidthcm',data=iris_df)     
+    sns.boxplot(x='species',y='Sepal_width(cm)',data=iris_df)     
     plt.subplot(2,2,3)    
-    sns.boxplot(x='species',y='petallengthcm',data=iris_df)     
+    sns.boxplot(x='species',y='Petal_length(cm)',data=iris_df)     
     plt.subplot(2,2,4)    
-    sns.boxplot(x='species',y='petalwidthcm',data=iris_df)
+    sns.boxplot(x='species',y='Petal_width(cm)',data=iris_df)
     plt.savefig("Box_plot.png")
     plt.show()   
 
@@ -239,13 +242,13 @@ On the plot the x axis is the species type, y axis is the attribute
 
     plt.figure(figsize=(15,10))
     plt.subplot(2,2,1)
-    sns.violinplot(x='species',y='petallengthcm',data=iris_df)
+    sns.violinplot(x='species',y='Petal_length(cm)',data=iris_df)
     plt.subplot(2,2,2)
-    sns.violinplot(x='species',y='petalwidthcm',data=iris_df)
+    sns.violinplot(x='species',y='Petal_width(cm)',data=iris_df)
     plt.subplot(2,2,3)
-    sns.violinplot(x='species',y='sepallengthcm',data=iris_df)
+    sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
     plt.subplot(2,2,4)
-    sns.violinplot(x='species',y='sepalwidthcm',data=iris_df)
+    sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
     plt.show()  
 
 Summary of Univariate analysis, shows for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.  
@@ -260,35 +263,56 @@ Multivariate analysis helps us understand the relationships between attributes &
 
 ### 3.2.1 Scatterplot (Pairsplot)  
 
-Scatter plot is very useful when we are analyzing the relationship between 2 features on x and y axis.
+Scatter plot is very useful to analyse the relationship between 2 features on x and y axis.
 In seaborn library there is a pairplot function which is very useful to scatter plot all the features at once instead of plotting them individually.  
 
-The pair plot used to figure out a distribution of single variables and the relationship between two variables.  
+The pair plot is used to figure out a distribution of single variables and the relationship between two variables.  
 If the pair plot is given a solution for that as a clear understanding of each flower sets at a single graph.  
 Each flower scatters plots represented in different colors.  
 
 For each pair of attributes, we can use a scatter plot to visualize their joint distribution  
-sns.pairplot(iris_df, hue="species", diag_kind="kde")  
-plt.show()  
+    sns.pairplot(iris_df, hue="species", diag_kind="kde")  
+    plt.show()  
+
+The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. While Setosa can be easily linearly separable, Virnica and Versicolor have some overlap. So we can separate them by a line and some “if-else” conditions.
 
 ### 3.2.2 Correlation and Heatmaps  
 
-A Heatmap is used to show correlation. 
+A Heatmap is used to show correlation. Each square shows the correlation between the variables on each axis.   
+Correlation ranges from -1 to +1. Values closer to zero means there is no linear trend between the two variables.    
+The close to 1 the correlation is the more positively correlated they are; that is as one increases so does the other and the closer to 1 the stronger this relationship is.    
+A correlation closer to -1 is similar, but instead of both increasing one variable will decrease as the other increases. 
 
-To show the values on the heatmap, insert "annot = True" and use cmap to pick the colour palette of your choice 
-The output shows that Sepal Width and Length are not correlated, and Petal Width and Length are highly correlated.  
+As I plan is to use and train algorithms, the number of features and their correlation plays an important role for this.  
+If there are features that are highly correlated, then training an algorithm with all the features will reduce the accuracy.   
+Therefore features selection needs to be done carefully. The iris dataset has a low number of featues (4) but still we will see the correlation. 
 
-    print(iris_df.corr())
+Using the heatmap feature in Seaborn, we show the values on the heatmap, insert "annot = True" and use cmap to pick the colour palette of your choice  
+
+    print(iris_df.corr())  
+
+![](images/3.1.2.heatmapsnumbers.PNG)   
+
     plt.figure(figsize=(15,10))
     sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
     plt.show()
+
+![](images/3.1.2.heatmaps.PNG)   
+
+ 
+   
+The diagonals are all 1 (light in colour) because those squares are correlating each variable to itself (so it's a perfect correlation).  
+High positive or negative value shows that the features have high correlation, in the iris dataset the petal length and petal width have the highest correlation with a value of 0.96.    
+On the opposite end, the sepal width and the sepal length have the lowest correlation with a value of -0.11.
 
 https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
 https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
 http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
 https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
-https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
+https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
+https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot  
+
 
 # 4.0 Train and Validate the data (Machine learning)  
 

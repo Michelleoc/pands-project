@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 path = ""
 filenameForIrisData = path + "iris.csv"
-header_list = ["sepallengthcm", "sepalwidthcm", "petallengthcm", "petalwidthcm", "species"]
+header_list = ["sepallengthcm", "sepalwidthcm", "pcd etallengthcm", "petalwidthcm", "species"]
 df = pd.read_csv(filenameForIrisData)
 iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm", "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
 # print (iris_df)
