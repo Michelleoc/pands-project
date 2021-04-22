@@ -15,6 +15,23 @@
 3. [Data Visualisation](#datavisualisaton)
     1. [Univariate Analysis](#univariateanalysis)
         1. [Historgrams](#histograms)
+        1. [Boxplots](#boxplots)
+        1. [Violinplots](#violinplots)
+        1. [Univariate Analysis](#univariateanalysis)
+    2. [Multivariate Analysis](#multivariateanalysis)
+        1. [Scatterplot (Pairsplot)](#scatterplot)
+        1. [Correlation and Heatmaps](#correlationandHeatmaps)
+        1. [Multivariate Analysis](#multivariateanalysis)
+4. [Train and Validate the data (Machine Learning)](#trainandvalidatethedata)
+    1. [Step 1 - Split the Datset](#splitthedataset)
+    1. [Step 2 - Training and Testing Dataset shape](#trainandtest)
+    1. [Step 3 - Select an algorithm](#selectanalgorithm)
+    1. [Step 4 - Pass the training set to the algorithm](#passthetrainingset)
+    1. [Step 5 - Predict Species](#spredictspecies)
+    1. [Step 6 - Check model accuracy](#scheckmodelaccuracy)
+    1. [Step 7 - Compare to other algorithms](#comparetootheralgorithms)
+    1. [Step 8 - Final model selection](#finalmodelselection)
+
 
 
 ## Project <a name="project"></a> 
@@ -224,7 +241,7 @@ The 'hue' option allows a variable that determines the colour of the plot elemen
 
 The outputting plots show that the petal length and petal width can be used to differeniate the species setosa from the other 2 species.    
 
-### 3.1.2 Boxplot  
+#### Boxplots <a name="boxplots"></a> 
 
 Boxplot show the range the individual attributes fall into, it represents the minimum, first quartile (25% or lower), median, third quartile (75% or upper) and maximum of the dataset.  
 The box on the plot shows between the first (25%) and third quartile (75%) on the range. The horizontal line that goes through the box is the median.  
@@ -256,7 +273,7 @@ However similiar to the initial view of the dataset and the histograms, the box 
 The Iris Setosa petal length and petal width attributes data do not overlap with the Veriscolor and Virginica  
  
 
-### 3.1.3 Violinplot  
+#### Violinplots <a name="violinplots"></a> 
 
 The Violinplot groups by species, similar to the boxplot it shows how the length and width vary according to the species.  
 However the violinplot show the density of the results, the thinner part shows that there is less occurances whereas the fatter part conveys higher density or high occurences.  
@@ -278,17 +295,18 @@ On the plot the x axis is the species type, y axis is the attribute.
 
 ![](images/3.1.3.violinplot.PNG)     
 
-### 3.1.4 Univariate conclusion  
+#### Univariate Conclusion <a name="univariateconclusion"></a>  
 
 Summary of all 3 of my Univariate analysis (Histograms, Boxplot and Violinplots) show for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
 
+  
 
-## 3.2 Multivariate analysis   
+### Multivariate Analysis <a name="multivariateanalysis"></a>    
 
 Multivariate analysis helps us understand the relationships between attributes & species better, i.e. which attributes contributes a lot in classifying species.  
 
 
-### 3.2.1 Scatterplot (Pairsplot)  
+#### Scatterplot (Pairsplot) <a name="scatterplot"></a> 
 
 Scatter plot is very useful to analyse the relationship between 2 features on x and y axis.
 In seaborn library there is a pairplot function which is very useful to scatter plot all the features at once instead of plotting them individually.  
@@ -305,7 +323,7 @@ For each pair of attributes, we can use a scatter plot to visualize their joint 
 
 The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. While Setosa can be easily linearly separable, Virnica and Versicolor have some overlap. So we can separate them by a line and some “if-else” conditions.
 
-### 3.2.2 Correlation and Heatmaps  
+#### Correlation and Heatmaps <a name="correlationandHeatmaps"></a> 
 
 A Heatmap is used to show correlation. Each square shows the correlation between the variables on each axis.   
 Correlation ranges from -1 to +1. Values closer to zero means there is no linear trend between the two variables.    
@@ -334,6 +352,10 @@ The diagonals are all 1 (light in colour) because those squares are correlating 
 High positive or negative value shows that the features have high correlation, in the iris dataset the petal length and petal width have the highest correlation with a value of 0.96.    
 On the opposite end, the sepal width and the sepal length have the lowest correlation with a value of -0.11.
 
+
+#### Multivariate Conclusion <a name="multivariateconclusion"></a>  
+
+
 https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
 https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
 http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
@@ -343,7 +365,7 @@ https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
 https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot  
 
 
-# 4.0 Train and Validate the data (Machine learning)  
+## Train and Validate the data (Machine Learning) <a name="trainandvalidatethedata"></a>   
 
 The Iris dataset can be used by a machine learning model to illustrate classification (a method used to determine the type of an object by comparison with similar objects that have previously been categorised).   
 Once trained on known data, the machine learning model can make a predictive classification by comparing a test object to the output of its training data.
@@ -366,7 +388,8 @@ The preliminary step is to define the attributes or input group (i.e. 4 features
     y=iris.target  
 
 
-## 4.1 Step 1 - Split the Datset 
+### Step 1 - Split the Datset <a name="splitthedataset"></a>   
+
 My first step was to split the dataset into training and testing dataset, I have chosen a 75%:25% split:
 75% of the data will be training data - X_train, y_train for training the model
 25% of the data will be testing data - X_test, y_test for testing the model     
@@ -374,8 +397,8 @@ My first step was to split the dataset into training and testing dataset, I have
     from sklearn.model_selection import train_test_split
     X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
   
+### Step 2 - Training and Testing Dataset shape <a name="trainandtest"></a>     
 
-## 4.2 Step 2 - Training and Testing Dataset shape
 To show the shape/size of the train and test data samples
 X_train is 75% of 150 = 112 rows of data in 4 columns (the 4 features/variables)
 y_train is 75% of 150 = 112 rows of the species column
@@ -390,7 +413,8 @@ y_train is 25% of 150 = 38 rows of the species column
 ![](images/4.0.2.traintestshape.PNG)   
 
 
-## 4.3 Step 3 - Select an algorithm 
+### Step 3 - Select an algorithm <a name="selectanalgorithm"></a>    
+
 I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
 k is the number of nearest neighbours and is the core deciding factor. K is set by the user, we can consider any fixed number k of neighbors in the training.   
 The algorithm calculates the distance between the new data point with the training examples.  
@@ -398,8 +422,8 @@ The model picks 'k' (as determined by the user) entries in the training data whi
 When k=1, the algorithm is know as the nearest neighbour algorithm.    
 We can now make a prediction using the majority class among them. For our example, we will use one neighbor (k=1). 
 
+### Step 4 - Pass the training set to the algorithm <a name="passthetrainingset"></a>  
 
-## 4.4 Step 4 - Pass the training set to the algorithm 
 I now use the fit method of the knn object, to train the algorithm with the training data X_train (containing the training data of the 4 features) and the training output y_train (containing the corresponding species), this builds up our model on the training set.  
 We enter sample data (X_new) and show the shape of the data, it is one row (1 sample) with 4 columns of data (the 4 features/variables sepal and petal measurements).   
 
@@ -410,8 +434,8 @@ We enter sample data (X_new) and show the shape of the data, it is one row (1 sa
 
 ![](images/4.0.4.trainingshape.PNG)   
 
- 
-## 4.5 Step 5 - Predict Species  
+
+### Step 5 - Predict Species <a name="predictspecies"></a>   
 
 I now use the predict method of the knn object to predict the species of the sample data X_new and print the outcome. In the iris dataset, it has a species class of 0, also know as the setosa. 
 
@@ -421,8 +445,8 @@ I now use the predict method of the knn object to predict the species of the sam
 
 ![](images/4.0.5.predictspecies.PNG)   
 
- 
-## 4.6 Step 6 - Check model accuracy
+
+### Step 6 - Check model accuracy <a name="checkmodelaccuracy"></a>    
 
 A question that remains is how can we trust the results of the model.  
 
@@ -453,8 +477,7 @@ This is a high level of accuracy and it means that our model may be trustworthy 
 
 While the iris dataset and classification is simple, it is a good example to illustrate how a machine learning problem should be approached and how useful the outcome can be. 
 
- 
-## 4.7 Step 7 - Compare to other algorithms
+### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
 
 An additional step that can be done is to spot check other algorithms to see their results. 
 I will test 6 different algorithms, this is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.  
@@ -493,8 +516,7 @@ We can see that the box and whisker plots are squashed at the top of the range, 
 
 NOTE NOTE NOTE Make predictions on test/validation dataset 
 
-
-## 4.8 Step 8 - Final model selection
+### Step 8 - Final model selection <a name="finalmodelselection"></a>  
 
 The results in the previous section suggest that the LDA was the most accurate model, I will use this model as the final model.  
 Now we want to get an idea of the accuracy of the model on our validation set.  
