@@ -6,7 +6,7 @@
 0. [Project](#project)
     1. [Project Outline](#projectoutline)
     2. [Python Programs used in Project](#PythonProgramsusedinProject)
-1. [Introduction to Iris DatasetProject](#introductiontodatasetproject)
+1. [Introduction to Iris Dataset Project](#introductiontodatasetproject)
     1. [History of Iris Dataset](#history of iris dataset)
 
 
@@ -23,14 +23,16 @@ This is a sub paragraph, formatted in heading 3 style
 The second paragraph text
 
 
-
+## This is the introduction <a name="project"></a>
 ## Project 
 
+### Sub paragraph <a name="projectoutline"></a>
 ### Project Outline  
 
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
 The project task was to investigate, analyse and present my findings on the dataset using python.     
 
+### Sub paragraph <a name="PythonProgramsusedinProject"></a>
 ### 0.1 Python Programs used in Project  
 
 pandas is a programming languary for data manipulation and analysis    
