@@ -2,47 +2,27 @@
 
 # Author : Michelle O'Connor
 
-<!--ts-->
-## 0.0 Project 
-## 0.0 Project Outline  
-## 0.1 Python Programs used in Project
-# 1.0 Introduction
-## 1.1 History of Iris Dataset   
-## 1.2 Use of Iris Dataset  
-<!--te-->
+# Table of contents
+0. [Project](#project)
+1. [Introduction to Iris Dataset](#Introduction to Iris Dataset)
+    1. [Sub paragraph](#subparagraph1)
+3. [Another paragraph](#paragraph2)
 
-0.0 Project
- - 1.1 Project Outline  
- - 1.2 Python Programs used in Project  
+## This is the introduction <a name="project"></a>
+Some introduction text, formatted in heading 2 style
 
-1.0 Introduction to Iris Dataset  
- - 1.1 History of Iris Dataset
- - 1.2 Use of Iris Dataset
+# Some paragraph <a name="Introduction to Iris Datasetparagraph1"></a>
+The first paragraph text
 
-2.0 Loading and understanding the Iris dataset  
- - 2.1 Loading the dataset   
- - 2.2 Understanding the dataset    
+### Sub paragraph <a name="subparagraph1"></a>
+This is a sub paragraph, formatted in heading 3 style
 
-3.0 Data Visualisation   
-
-3.1 Univariate conclusion  
- - 3.1.1 Histograms   
- - 3.1.2 Boxplots   
- - 3.1.3 Scatterplot  
- - 3.1.4 Univariate conclusion    
-
- 3.2 Multivariate conclusion  
- - 3.2.1 Scatterplot (Pairsplot)     
- - 3.2.2 Correlation and Heatmaps  
- - 3.2.3 Multivariate conclusion  
-
-4.0 Train and Validate the data (Machine learning)  
- - 4.1      
+## Another paragraph <a name="paragraph2"></a>
+The second paragraph text
 
 
-6.0 Conclusion  
 
-## 0.0 Project 
+## 0 Project 
 
 ## 0.0 Project Outline  
 
