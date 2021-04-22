@@ -2,6 +2,8 @@
 
 # Author : Michelle O'Connor
 
+[_TOC_]
+
 # Contents
 
 0.0 Project
@@ -118,9 +120,6 @@ https://www.ritchieng.com/machine-learning-iris-dataset/
 https://en.wikipedia.org/wiki/Iris_flower_data_set
 https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5
 http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
-
-Adding image to Github read me file  
-https://www.youtube.com/watch?v=hHbWF1Bvgf4
 
 
 # 2.0 Loading and understanding the Iris dataset:
@@ -535,7 +534,7 @@ We can evaluate the predictions by comparing them to the expected results in the
 We can see that the accuracy is 1.0 or about 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
 Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
   
-  
+
 # References 
 
 https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3
