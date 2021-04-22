@@ -4,6 +4,8 @@
 
 # Table of contents
 0. [Project](#project)
+    1. [Project Outline](#projectoutline)
+    2. [Python Programs used in Project](#PythonProgramsusedinProject)
 1. [Introduction to Iris Dataset](#Introduction to Iris Dataset)
     1. [Sub paragraph](#subparagraph1)
 3. [Another paragraph](#paragraph2)
@@ -11,7 +13,7 @@
 ## This is the introduction <a name="project"></a>
 Some introduction text, formatted in heading 2 style
 
-# Some paragraph <a name="Introduction to Iris Datasetparagraph1"></a>
+# Some paragraph <a name="Introduction to Iris Dataset"></a>
 The first paragraph text
 
 ### Sub paragraph <a name="subparagraph1"></a>
