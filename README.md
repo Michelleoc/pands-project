@@ -6,34 +6,25 @@
 0. [Project](#project)
     1. [Project Outline](#projectoutline)
     2. [Python Programs used in Project](#PythonProgramsusedinProject)
-1. [Introduction to Iris Dataset Project](#introductiontodatasetproject)
-    1. [History of Iris Dataset](#history of iris dataset)
+1. [Introduction to Iris Dataset Project](#introductiontoirisdataset)
+    1. [History of Iris Dataset](#historyofirisdataset)
+    2. [Use of Iris Dataset](#useofirisdataset)
+2. [Loading and understanding the Iris dataset](#loadingandunderstandingtheirisdataset)
+    1. [Loading the dataset](#loadingthedataset)
+    2. [Understanding the dataset](#understandingthedataset)
+3. [Data Visualisation](#datavisualisaton)
+    1. [Univariate Analysis](#univariateanalysis)
+        1. [Historgrams](#histograms)
 
 
-## This is the introduction <a name="project"></a>
-Some introduction text, formatted in heading 2 style
+## Project <a name="project"></a> 
 
-# Some paragraph <a name="Introduction to Iris Dataset"></a>
-The first paragraph text
-
-### Sub paragraph <a name="subparagraph1"></a>
-This is a sub paragraph, formatted in heading 3 style
-
-## Another paragraph <a name="paragraph2"></a>
-The second paragraph text
-
-
-## This is the introduction <a name="project"></a>
-## Project 
-
-### Sub paragraph <a name="projectoutline"></a>
-### Project Outline  
+### Project Outline <a name="projectoutline"></a>  
 
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
 The project task was to investigate, analyse and present my findings on the dataset using python.     
 
-### Sub paragraph <a name="PythonProgramsusedinProject"></a>
-### 0.1 Python Programs used in Project  
+### Python Programs used in Project <a name="PythonProgramsusedinProject"></a>
 
 pandas is a programming languary for data manipulation and analysis    
 
@@ -64,9 +55,10 @@ scikit-learn is a machine learning library
         6. Support Vector Machine (SVM) Algorithm
 
 
-## Introduction to Iris Dataset
+## Introduction to Iris Dataset <a name="introductiontoirisdataset"></a> 
 
-### History of Iris Dataset  
+### History of Iris Dataset  <a name="historyofirisdataset"></a>  
+
 
 The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician, eugenicist, and biologist Ronald Fisher in his 1936 paper **__The use of multiple measurements in taxonomic problems__** as an example of linear discriminant analysis. It is sometimes called Anderson's Iris data set because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species.     
 
@@ -88,7 +80,7 @@ Two of the three species were collected in the Gaspé Peninsula "all from the sa
 ![](Iris_Image.png)  
 
 
-## 1.2 Use of Iris Dataset 
+### Use of Iris Dataset <a name="useofirisdataset"></a>  
 
 Why is the Iris dataset so well know, this dataset is the “hello world” of Machine Learning.
 “Hello World” is often the first program written by people learning to code, the iris dataset is generally the first dataset used as an introduction into Machine Learning.   
@@ -111,9 +103,9 @@ https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biol
 http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 
 
-# 2.0 Loading and understanding the Iris dataset:
+## Loading and understanding the Iris dataset <a name="loadingandunderstandingtheirisdataset"></a> 
 
-## 2.1 Loading the dataset    
+### Loading the dataset <a name="loadingthedataset"></a>
 
 The Iris dataset is widely available on the internet. The dataset is included in R base and Python in the machine learning package Scikit-learn, so that users can access it without having to find a source for it.  
 
@@ -126,7 +118,7 @@ I rename the columns so that they include the measurement type 'cm' is in the ti
     iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)",   
     "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
 
-## 2.2 Understanding the dataset    
+### Understanding the dataset <a name="understandingthedataset"></a>
 
 The first part of investigating a dataset, starts with an initial understanding of the shape and what elements are included in the dataset.   
 
@@ -197,18 +189,19 @@ https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-pyth
 https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
 
-# 3.0 Data Visualisation 
+
+## Data Visualisation <a name="datavisualisaton"></a> 
 
 With a basic understanding of the dataset, we move to data visualisation to help us compare and observe trends within the data.  
 
 There are many visualation options within python using matplotlib and seaborn.    
 
-## 3.1 Univariate Analysis  
+### Univariate Analysis <a name="univariateanalysis"></a>  
 
 Univariate analysis is the simplest form of analysing data.   
 “Uni” means “one”, so in other words your data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. 
 
-### 3.1.1 Historgrams  
+#### Historgrams <a name="histograms"></a> 
 
 Histograms is a classic visualisation tool that show the distribution of the number of observations that fall within in a bin.    
 FacetGrid within Seaborn is a multi-plot grid to help visualise distribution of a variable.  
