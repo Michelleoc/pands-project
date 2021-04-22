@@ -2,14 +2,14 @@
 
 # Author : Michelle O'Connor
 
-[_TOC_]
-
+<!--ts-->
 ## 0.0 Project 
 ## 0.0 Project Outline  
 ## 0.1 Python Programs used in Project
 # 1.0 Introduction
 ## 1.1 History of Iris Dataset   
 ## 1.2 Use of Iris Dataset  
+<!--te-->
 
 0.0 Project
  - 1.1 Project Outline  
