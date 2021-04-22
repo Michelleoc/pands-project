@@ -24,14 +24,14 @@ The second paragraph text
 
 
 
-# Project 
+## Project 
 
-## Project Outline  
+### Project Outline  
 
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
 The project task was to investigate, analyse and present my findings on the dataset using python.     
 
-## 0.1 Python Programs used in Project  
+### 0.1 Python Programs used in Project  
 
 pandas is a programming languary for data manipulation and analysis    
 
@@ -62,9 +62,9 @@ scikit-learn is a machine learning library
         6. Support Vector Machine (SVM) Algorithm
 
 
-# Introduction to Iris Dataset
+## Introduction to Iris Dataset
 
-## History of Iris Dataset  
+### History of Iris Dataset  
 
 The Iris flower data set or Fisher's Iris data set is a multivariate data set introduced by the British statistician, eugenicist, and biologist Ronald Fisher in his 1936 paper **__The use of multiple measurements in taxonomic problems__** as an example of linear discriminant analysis. It is sometimes called Anderson's Iris data set because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species.     
 
