@@ -33,7 +33,6 @@
     1. [Step 8 - Final model selection](#finalmodelselection)
 
 
-
 ## Project <a name="project"></a> 
 
 ### Project Outline <a name="projectoutline"></a>  
@@ -142,8 +141,13 @@ The first part of investigating a dataset, starts with an initial understanding 
 * I preview a sample of the data, for example the first 5 rows
     print(iris_df.head(5))     
 
-    ![](images/2.2.First5rows.PNG)   
-  
+<details>
+  <summary>Output </summary>   
+   
+![](images/2.2.First5rows.PNG)     
+
+</details>    
+
 
 This shows the dataset has 5 columns (Sepal Length, Sepal width, Petal Length, Petal Width, Species) and an unknown quantity of the rows.
 I then build upon this to extract different views of the data:  
@@ -151,40 +155,66 @@ I then build upon this to extract different views of the data:
 * Show the full size (shape) of the dataset.  
         We have 150 samples for the 5 columns    
     
-        print(iris_df.shape)  
+        print(iris_df.shape)   
 
-    ![](images/2.2.shape.PNG)  
+    <details>
+  <summary>Output </summary>       
 
+    ![](images/2.2.shape.PNG)    
+
+    </details>    
+        
 
 * Show the number of instances, the number of attributes and if any null values exist in the dataset.  
         We have 150 instances for 5 attributes of which no null values exist.    
     
-        print(iris_df.info())
+        print(iris_df.info())   
+      
+    <details>
+  <summary>Output </summary>   
 
-    ![](images/2.2.nullcount.PNG)  
+    ![](images/2.2.nullcount.PNG)    
+
+    </details>      
 
 * Show how many instances the dataset contains by species.  
         The dataset has an equal number of 50 instances for each species.  
            
-        print(iris_df.groupby('species').size())   
+        print(iris_df.groupby('species').size())     
+      
+    <details>
+  <summary>Output </summary>   
 
-    ![](images/2.2.countofspecies.PNG)  
+    ![](images/2.2.countofspecies.PNG)     
+
+    </details>      
 
 
 * Show the basic statistical details of the dataframe (iris dataset).  
         This shows the count, mean, std, min, 25%, 50%, 75%, max infor for each attribute/feature. 
         
-        print(iris_df.describe())
- 
-    ![](images/2.2.describe.PNG)  
+        print(iris_df.describe())   
+      
+    <details>
+  <summary>Output </summary>   
+
+    ![](images/2.2.describe.PNG)     
+       
+    </details>        
+
 
 * Show the first 5 rows of each type of species
 
         print(iris_df[0:5])
         print(iris_df[50:55])
-        print(iris_df[100:105])   
+        print(iris_df[100:105])     
+       
+    <details>
+  <summary>Output </summary>   
 
-    ![](images/2.2.First5rowsbyspecies.PNG)        
+    ![](images/2.2.First5rowsbyspecies.PNG)          
+      
+    </details>      
 
 * Show the summary of each variable by the species  
         print(iris_df.groupby("species").describe())
