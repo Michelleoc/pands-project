@@ -1,18 +1,18 @@
 # pands-project2021 - Iris Dataset
 
-# Author : Michelle O'Connor
+# Author : Michelle O'Connor (Student ID : G00398975)
 
 # Table of contents
-0. [Project](#project)
+1. [Project Introduction](#project)
     1. [Project Outline](#projectoutline)
     2. [Python Programs used in Project](#PythonProgramsusedinProject)
-1. [Introduction to Iris Dataset Project](#introductiontoirisdataset)
+2. [Iris Dataset](#irisdataset)
     1. [History of Iris Dataset](#historyofirisdataset)
     2. [Use of Iris Dataset](#useofirisdataset)
-2. [Loading and understanding the Iris dataset](#loadingandunderstandingtheirisdataset)
+3. [Loading and understanding the Iris dataset](#loadingandunderstandingtheirisdataset)
     1. [Loading the dataset](#loadingthedataset)
     2. [Understanding the dataset](#understandingthedataset)
-3. [Data Visualisation](#datavisualisaton)
+4. [Data Visualisation](#datavisualisaton)
     1. [Univariate Analysis](#univariateanalysis)
         1. [Historgrams](#histograms)
         1. [Boxplots](#boxplots)
@@ -22,7 +22,7 @@
         1. [Scatterplot (Pairsplot)](#scatterplot)
         1. [Correlation and Heatmaps](#correlationandHeatmaps)
         1. [Multivariate Analysis](#multivariateanalysis)
-4. [Train and Validate the data (Machine Learning)](#trainandvalidatethedata)
+5. [Train and Validate the data (Machine Learning)](#trainandvalidatethedata)
     1. [Step 1 - Split the Datset](#splitthedataset)
     1. [Step 2 - Training and Testing Dataset shape](#trainandtest)
     1. [Step 3 - Select an algorithm](#selectanalgorithm)
@@ -30,32 +30,42 @@
     1. [Step 5 - Predict Species](#spredictspecies)
     1. [Step 6 - Check model accuracy](#scheckmodelaccuracy)
     1. [Step 7 - Compare to other algorithms](#comparetootheralgorithms)
-    1. [Step 8 - Final model selection](#finalmodelselection)
+    1. [Step 8 - Final model selection](#finalmodelselection)  
+6. [Project Conclusion](#projectconclusion)     
+5. [References](#references)
 
 
-## Project <a name="project"></a> 
+
+## Project Introduction <a name="project"></a> 
 
 ### Project Outline <a name="projectoutline"></a>  
 
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
-The project task was to investigate, analyse and present my findings on the dataset using python.     
+The project task was to investigate, analyse and present my findings on the dataset using python.       
+
+** List all the files in the folder**  
+
 
 ### Python Programs used in Project <a name="PythonProgramsusedinProject"></a>
 
-pandas is a programming languary for data manipulation and analysis    
+* Pandas  
+    Programming language for data manipulation and analysis. Pandas allows importing data from various file formats such as comma-separated values, JSON, SQL, Microsoft Excel. Pandas allows various data manipulation operations such as merging, reshaping, selecting. 
 
-numpy supports dealing with arrays and functions on arrays   
+* NumPy   
+    Python library used for working with arrays, including a large collection of high-level mathematical functions to operate on these arrays. 
 
-seaborn is a data visualisation library    
+* Matplotlib  
+    Comprehensive library for creating static, animated, and interactive visualizations in Python  
 
-matplotlib is a plotting library   
+* Seaborn   
+    Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics 
 
-scikit-learn is a machine learning library    
+* Scikit-learn is a machine learning library with tools for predictive data analysis. It features various classification, regression and clustering algorithms and is designed to interoperate with the Python numerical and scientific libraries. 
 
     - sklearn.model_selection   
-        1. StratifiedKFold shuffles the data, splits the date after that splits the data into n_splits parts 
-        2. cross_val_score
-        3. train_test_split    
+        1. StratifiedKFold - shuffles the data, provides train/test indices to split data in train test sets. 
+        2. cross_val_score - It takes the features and target , splits into k-folds (which is the cv parameter), fits on the (k-1) folds and evaluates on the last fold. It does this k times, which is why you get k values in your output
+        3. train_test_split - used to for splitting data arrays into two subsets: for training data and for testing data
 
     - sklearn.metrics 
         1. classification_report - used to measure the quality of predictions from a classification algorithm
@@ -63,15 +73,15 @@ scikit-learn is a machine learning library
         3. accuracy_score computes the accuracy   
 
     - sklearn.algorithms   
-        1. LogisticRegression is a statistical method for modelling relationship between a dependent variable with a given set of independent variables.   
-        2. DecisionTreeClassifier is a 2 step process, a learning (training) step and prediction step.   
-        3. KNeighborsClassifier is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure# for K nearest neighbours.  
-        4. LinearDiscriminantAnalysis is a method to find a linear combination of features that characterizes or separates two or more classes of objects.  
-        5. GaussianNB
-        6. Support Vector Machine (SVM) Algorithm
+        1. LogisticRegression is a supervised learning classification algorithm used to predict the probability of a target variable.   
+        2. DecisionTreeClassifier is a 2 step process, a learning (training) step and prediction step. In the learning step, the model is developed based on given training data. In the prediction step, the model is used to predict the response for given data   
+        3. KNeighborsClassifier is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure for a defined number of nearest neighbours "K".  
+        4. LinearDiscriminantAnalysis is a dimensionality reduction technique, it reduces the number of dimensions (i.e. variables) in a dataset while retaining as much information as possible.  
+        5. GaussianNB is used to calculate conditional probability, it assumes that the continuous values associated with each class are distributed according to a normal (or Gaussian) distribution.  
+        6. Support Vector Machine (SVM) Algorithm uses classification algorithms for two-group classification problems
 
 
-## Introduction to Iris Dataset <a name="introductiontoirisdataset"></a> 
+## Iris Dataset <a name="irisdataset"></a> 
 
 ### History of Iris Dataset  <a name="historyofirisdataset"></a>  
 
@@ -141,12 +151,12 @@ The first part of investigating a dataset, starts with an initial understanding 
 * I preview a sample of the data, for example the first 5 rows
     print(iris_df.head(5))     
 
-<details>
-  <summary>Output </summary>   
-   
-![](images/2.2.First5rows.PNG)     
+    <details>
+    <summary>Output </summary>   
+    
+    ![](images/2.2.First5rows.PNG)     
 
-</details>    
+    </details>    
 
 
 This shows the dataset has 5 columns (Sepal Length, Sepal width, Petal Length, Petal Width, Species) and an unknown quantity of the rows.
@@ -216,14 +226,19 @@ I then build upon this to extract different views of the data:
       
     </details>      
 
-* Show the summary of each variable by the species  
+* Show the summary of each variable by the species    
+
         print(iris_df.groupby("species").describe())
+  
 
-        To extract this data into a newly created single text file, we need to make the output in a   
-        string format using str. 
 
-            with open(".\Variable_Summary.txt", "wt") as i:
-            i.write(str(iris_df.groupby("species").describe()))
+To extract this data into a newly created single text file, we need to make the output in a string format using str. 
+
+        with open("Variable_Summary.txt", "wt") as f:  
+        print ("Shape of Data \n", str(iris_df.shape),"\n", file = f)  
+        print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)  
+        print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)  
+        print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
 
 Summary of the intial findings show a dataset of 50 rows each for 3 different species of the Iris flower, with no null values in the dataset.  
 The statisical details of the dataset show that the mean range from 5.84 on the sepal length down to 1.19 on the petal width.  
@@ -569,7 +584,10 @@ We can see that the accuracy is 1.0 or about 100% on the hold out dataset. The c
 Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
   
 
-# References 
+## Project Conclusion <a name="projectconclusion"></a>     
+
+
+## References <a name="references"></a>   
 
 https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3
 https://machinelearningmastery.com/machine-learning-in-python-step-by-step/

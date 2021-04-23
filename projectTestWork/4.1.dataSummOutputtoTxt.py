@@ -41,6 +41,21 @@ print(iris_df.groupby("species").describe())
 # class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 with open(".\Variable_Summary.txt", "wt") as i:
-    i.write(str(iris_df.groupby("species").describe())) 
-    i.write(str(iris_df.groupby('species').size())) 
-# print (iris_df.groupby("species").describe())
+    i.write(str(iris_df.shape)) 
+    # i.write(str("\n")   
+    # i.write(str((iris_df.info())))   
+    # i.write(str("\n")   
+    # i.write(str(iris_df.shape)) 
+    # i.write(str(iris_df.groupby('species').size())  
+    # i.write(str(iris_df.groupby("species").describe())
+
+
+# print (iris_df.groupby("species").describe())   
+
+'''
+with open("output.txt", "wt") as f:
+    f.write("blah the blah \n")
+    # print (str(iris_df.shape), file = f) # can also use print () option to add/write data into the text file
+    print (str(iris_df.groupby("species").describe()), file = f)
+    # print (str(iris_df.info()), file = f)
+'''
