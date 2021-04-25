@@ -31,7 +31,7 @@ iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" 
 # To show the full list print (iris_df), but for now I just want to see the first 5 rows of data 
 print(iris_df.head(5))   
 
-# to show the shape of the dataset : (150, 5) 150 rows, 5 columns
+# To show the shape of the dataset : (150, 5) 150 rows, 5 columns
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 print(iris_df.shape)
 
@@ -53,12 +53,16 @@ print(iris_df[0:5])
 print(iris_df[50:55])
 print(iris_df[100:105])
 
-# this is to output a summary of each variable to a single text file
+# To output a summary of each variable (feature) to a single text file
 # input has to be in string format
 # class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
-with open(".\Variable_Summary.txt", "wt") as i:
-    i.write(str(iris_df.groupby("species").describe()))
+with open("Variable_Summary.txt", "wt") as f:
+    print ("Shape of Data \n", str(iris_df.shape),"\n", file = f)
+    print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)
+    print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)
+    print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
+
 
 # Plotting, displaying and saving a histogram of each variable to png files  
 # https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
@@ -101,13 +105,6 @@ sns.boxplot(x='species',y='Petal_width(cm)',data=iris_df)
 plt.savefig("Box_plot.png")
 plt.show()
 
-# A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
-#  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
-# Scatterplot matrices are very good visualization tools and may help identify correlations or lack of it
-# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
-sns.pairplot(iris_df, hue="species", diag_kind="kde")
-plt.show()
-
 # Violinplot grouped by series
 # To show how the length and width vary according to the species
 # To show 4 Violinplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required. 
@@ -124,6 +121,15 @@ sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
 plt.subplot(2,2,4)
 sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
 plt.show()
+
+
+# A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
+#  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
+# Scatterplot matrices are very good visualization tools and may help identify correlations or lack of it
+# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
+sns.pairplot(iris_df, hue="species", diag_kind="kde")
+plt.show()
+
 
 # to show correlation 
 print(iris_df.corr())
@@ -153,7 +159,6 @@ y=iris.target
 # Splitting the iris dataset 75% for training and 25% for testing
 # X_train, y_train for training the model
 # X_test, y_test for testing the model
-
 
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)

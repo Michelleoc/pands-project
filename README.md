@@ -22,17 +22,18 @@
         1. [Scatterplot (Pairsplot)](#scatterplot)
         1. [Correlation and Heatmaps](#correlationandHeatmaps)
         1. [Multivariate Analysis](#multivariateanalysis)
-5. [Train and Validate the data (Machine Learning)](#trainandvalidatethedata)
-    1. [Step 1 - Split the Datset](#splitthedataset)
-    1. [Step 2 - Training and Testing Dataset shape](#trainandtest)
-    1. [Step 3 - Select an algorithm](#selectanalgorithm)
-    1. [Step 4 - Pass the training set to the algorithm](#passthetrainingset)
-    1. [Step 5 - Predict Species](#spredictspecies)
-    1. [Step 6 - Check model accuracy](#scheckmodelaccuracy)
-    1. [Step 7 - Compare to other algorithms](#comparetootheralgorithms)
-    1. [Step 8 - Final model selection](#finalmodelselection)  
+5. [Machine Learning](#machinelearning)
+    1. [Train and Validate the data (Machine Learning)](#trainandvalidatethedata)
+        1. [Step 1 - Split the Datset](#splitthedataset)
+        1. [Step 2 - Training and Testing Dataset shape](#trainandtest)
+        1. [Step 3 - Select an algorithm](#selectanalgorithm)
+        1. [Step 4 - Pass the training set to the algorithm](#passthetrainingset)
+        1. [Step 5 - Predict Species](#spredictspecies)
+        1. [Step 6 - Check model accuracy](#scheckmodelaccuracy)
+        1. [Step 7 - Compare to other algorithms](#comparetootheralgorithms)
+        1. [Step 8 - Final model selection](#finalmodelselection)  
 6. [Project Conclusion](#projectconclusion)     
-5. [References](#references)
+7. [References](#references)
 
 
 
@@ -69,16 +70,16 @@ The project task was to investigate, analyse and present my findings on the data
 
     - sklearn.metrics 
         1. classification_report - used to measure the quality of predictions from a classification algorithm
-        2. confusion_matrix is a table summary of the number of correct and incorrect predictions made by a classifier
-        3. accuracy_score computes the accuracy   
+        2. confusion_matrix - table summary of the number of correct and incorrect predictions made by a classifier
+        3. accuracy_score - computes the accuracy   
 
     - sklearn.algorithms   
-        1. LogisticRegression is a supervised learning classification algorithm used to predict the probability of a target variable.   
-        2. DecisionTreeClassifier is a 2 step process, a learning (training) step and prediction step. In the learning step, the model is developed based on given training data. In the prediction step, the model is used to predict the response for given data   
-        3. KNeighborsClassifier is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure for a defined number of nearest neighbours "K".  
-        4. LinearDiscriminantAnalysis is a dimensionality reduction technique, it reduces the number of dimensions (i.e. variables) in a dataset while retaining as much information as possible.  
-        5. GaussianNB is used to calculate conditional probability, it assumes that the continuous values associated with each class are distributed according to a normal (or Gaussian) distribution.  
-        6. Support Vector Machine (SVM) Algorithm uses classification algorithms for two-group classification problems
+        1. LogisticRegression - supervised learning classification algorithm used to predict the probability of a target variable.   
+        2. DecisionTreeClassifier - is a 2 step process, a learning (training) step and prediction step. In the learning step, the model is developed based on given training data. In the prediction step, the model is used to predict the response for given data   
+        3. KNeighborsClassifier - algorithm that stores all available cases and classifies new cases based on a similarity measure for a defined number of nearest neighbours "K".  
+        4. LinearDiscriminantAnalysis - a dimensionality reduction technique, it reduces the number of dimensions (i.e. variables) in a dataset while retaining as much information as possible.  
+        5. GaussianNB - used to calculate conditional probability, it assumes that the continuous values associated with each class are distributed according to a normal (or Gaussian) distribution.  
+        6. Support Vector Machine (SVM) Algorithm - uses classification algorithms for two-group classification problems
 
 
 ## Iris Dataset <a name="irisdataset"></a> 
@@ -95,7 +96,7 @@ The Iris dataset consists of the following:
     2.Iris Virginica  
     3.Iris Veriscolor  
 
-4 variables were measured:    
+4 variables (features) were measured:    
     1.Length of sepals (cm)  
     2.Width of sepals (cm)   
     3.Length of petals (cm)  
@@ -123,10 +124,10 @@ References
 
 
 
-https://www.ritchieng.com/machine-learning-iris-dataset/
-https://en.wikipedia.org/wiki/Iris_flower_data_set
-https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5
-http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
+1. https://www.ritchieng.com/machine-learning-iris-dataset/  
+2. https://en.wikipedia.org/wiki/Iris_flower_data_set
+3. https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5  
+5. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 
 
 ## Loading and understanding the Iris dataset <a name="loadingandunderstandingtheirisdataset"></a> 
@@ -135,7 +136,7 @@ http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 
 The Iris dataset is widely available on the internet. The dataset is included in R base and Python in the machine learning package Scikit-learn, so that users can access it without having to find a source for it.  
 
-I am treating the iris dataset as a dataset that needs to be loaded so I use pandas to import the data from a csv file and create a dataframe.    
+For the analysis stage of this project, I am treating the iris dataset as a dataset that needs to be loaded to show how pandas can be used to import the data from a csv file and to create a dataframe.    
 I rename the columns so that they include the measurement type 'cm' is in the title and I rename the class column to species. 
 
     path = ""
@@ -146,10 +147,10 @@ I rename the columns so that they include the measurement type 'cm' is in the ti
 
 ### Understanding the dataset <a name="understandingthedataset"></a>
 
-The first part of investigating a dataset, starts with an initial understanding of the shape and what elements are included in the dataset.   
+The first part of investigating a dataset, starts with an initial understanding of the shape and what elements are included in the dataset. Python has many functions that allow for data analysis and below I use some to perform the analysis. 
 
-* I preview a sample of the data, for example the first 5 rows
-    print(iris_df.head(5))     
+* I preview a sample of the data, for example the first 5 rows  
+        print(iris_df.head(5))     
 
     <details>
     <summary>Output </summary>   
@@ -159,7 +160,7 @@ The first part of investigating a dataset, starts with an initial understanding 
     </details>    
 
 
-This shows the dataset has 5 columns (Sepal Length, Sepal width, Petal Length, Petal Width, Species) and an unknown quantity of the rows.
+This shows the dataset has 5 columns (4 columns of measurements of the flowers, Sepal Length, Sepal Width, Petal Length, Petal Width and 1 column of the Species of the flowers), and an unknown quantity of the rows.
 I then build upon this to extract different views of the data:  
 
 * Show the full size (shape) of the dataset.  
@@ -201,7 +202,7 @@ I then build upon this to extract different views of the data:
 
 
 * Show the basic statistical details of the dataframe (iris dataset).  
-        This shows the count, mean, std, min, 25%, 50%, 75%, max infor for each attribute/feature. 
+        This shows the count, mean, std, min, 25%, 50%, 75%, max information for each feature. 
         
         print(iris_df.describe())   
       
@@ -284,16 +285,17 @@ The 'hue' option allows a variable that determines the colour of the plot elemen
 ![](images/3.1.1.Histogram_SepalLength.PNG)   
 ![](images/3.1.1.Histogram_SepalWidth.PNG)   
 
-The outputting plots show that the petal length and petal width can be used to differeniate the species setosa from the other 2 species.    
+The outputting plots show that for petal length and petal width we can separate/differeniate the species Setosa from the other 2 species Virginica and Versicolor.    
+Using sepal length and sepal width, it is not possible from looking at histogram charts to separate the flowers as the results overlap between all 3 species.   
 
 #### Boxplots <a name="boxplots"></a> 
 
 Boxplot show the range the individual attributes fall into, it represents the minimum, first quartile (25% or lower), median, third quartile (75% or upper) and maximum of the dataset.  
 The box on the plot shows between the first (25%) and third quartile (75%) on the range. The horizontal line that goes through the box is the median.  
 The top and bottom lines known as 'whiskers' extend from the ends of the box to the minimun and maximum value.    
-Any data points past the whiskers (represented by a diamond) are considered as outliers.  
+Any data points past the whiskers (represented by a diamond) are considered as outliers. Outliers are data results that lie an abnormal distance from other values in the dataset.
 
-Using Seaborn we plot a Boxplot for each attribute (4 Boxplots in total). 
+Using Seaborn library within Python we plot a Boxplot for each variable/feature (4 Boxplots in total). 
 To show 4 Boxplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required.  
 The 3rd value in the subplot indicates where on the output the plot is shown, as follows 1 - Top Left, 2 - Top Right, 3 - Bottom Left, 4 - Bottom Right, 
 for example (2,2,3) would show on the bottom left of the output.  
@@ -315,7 +317,7 @@ On the plot the x axis is the species type, y axis is the attribute
 
 Analyising the box plots, the sepal length and sepal width data results are close, with some overlap between all 3 species.   
 However similiar to the initial view of the dataset and the histograms, the box plots show us that for Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
-The Iris Setosa petal length and petal width attributes data do not overlap with the Veriscolor and Virginica  
+The Iris Setosa petal length and petal width variables/features data do not overlap with the Veriscolor and Virginica, even including the outliers!  
  
 
 #### Violinplots <a name="violinplots"></a> 
@@ -338,35 +340,40 @@ On the plot the x axis is the species type, y axis is the attribute.
     sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
     plt.show()    
 
-![](images/3.1.3.violinplot.PNG)     
+![](images/3.1.3.violinplot.PNG)       
+
+The Violinplot shows that Iris Virginica has highest median value in petal length, petal width and sepal length when compared against Versicolor and Setosa.  
+However, Iris Setosa has the highest sepal width median value.     
+The violin plot also indicates that the weight of the Setosa's petal length and petal width are highly concentrated around the median (i.e. they are fatter around the median), where are the Versicolor and Virginica are thinner for both of these features. 
+
 
 #### Univariate Conclusion <a name="univariateconclusion"></a>  
 
-Summary of all 3 of my Univariate analysis (Histograms, Boxplot and Violinplots) show for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
+Summary of all 3 of my Univariate analysis (Histograms, Boxplots and Violinplots) show for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
 
-  
 
 ### Multivariate Analysis <a name="multivariateanalysis"></a>    
 
-Multivariate analysis helps us understand the relationships between attributes & species better, i.e. which attributes contributes a lot in classifying species.  
+Multivariate analysis helps us understand the relationships between variables (features) & species better, i.e. which variables contributes a lot in classifying species.  
 
 
 #### Scatterplot (Pairsplot) <a name="scatterplot"></a> 
 
-Scatter plot is very useful to analyse the relationship between 2 features on x and y axis.
-In seaborn library there is a pairplot function which is very useful to scatter plot all the features at once instead of plotting them individually.  
+Scatter plot is very useful to analyse the relationship between 2 features on x and y axis.  
+A pairs plot gives a scatter plot of different features.    
+The Pairsplot produces a matrix of relationships between each variable in your data for an instant visualation and examination of the dataset.  
+The Pairsplot shows both distribution of single variables and relationships between two variables.    
 
-The pair plot is used to figure out a distribution of single variables and the relationship between two variables.  
-If the pair plot is given a solution for that as a clear understanding of each flower sets at a single graph.  
-Each iris species scatters plots are represented in different colors.    
-The 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual.  
+In seaborn library within python there is a pairplot function which is very useful to scatter plot all the features at once instead of plotting them individually.  
 
+Each iris species scatters plots are represented in different colours, the 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual.   
+Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen a density plot.  
 
-For each pair of attributes, we can use a scatter plot to visualize their joint distribution  
+For each pair of variables, we can use a scatter plot to visualize their joint distribution 
     sns.pairplot(iris_df, hue="species", diag_kind="kde")  
     plt.show()  
 
-The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. While Setosa can be easily linearly separable, Virnica and Versicolor have some overlap. So we can separate them by a line and some “if-else” conditions.
+The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. The species of Virginica and Versicolor cannot be easily separated based on their measurements. 
 
 #### Correlation and Heatmaps <a name="correlationandHeatmaps"></a> 
 
@@ -379,7 +386,7 @@ As I plan is to use and train algorithms, the number of features and their corre
 If there are features that are highly correlated, then training an algorithm with all the features will reduce the accuracy.   
 Therefore features selection needs to be done carefully. The iris dataset has a low number of featues (4) but still we will see the correlation. 
 
-Using the heatmap feature in Seaborn, we show the values on the heatmap, insert "annot = True" and use cmap to pick the colour palette of your choice  
+Using the heatmap feature in Seaborn, we show the values on the heatmap by inserting "annot = True" and use cmap to pick the colour palette of my choice.  
 
     print(iris_df.corr())  
 
@@ -407,12 +414,16 @@ http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
 https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
 https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
-https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot  
+https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot    
 
 
-## Train and Validate the data (Machine Learning) <a name="trainandvalidatethedata"></a>   
+## Machine Learning <a name="machinelearning"></a>       
 
-The Iris dataset can be used by a machine learning model to illustrate classification (a method used to determine the type of an object by comparison with similar objects that have previously been categorised).   
+Knowing that the iris dataset is generally the first dataset used as an introduction into Machine Learning, I was interested in 
+
+### Train and Validate the data (Machine Learning) <a name="trainandvalidatethedata"></a>   
+
+The Iris dataset can be used by a machine learning model to illustrate classification (a method used to determine the type of an object (species in this dataset) by comparison with similar objects that have previously been categorised).   
 Once trained on known data, the machine learning model can make a predictive classification by comparing a test object to the output of its training data.
 
 Steps To Be followed When Applying an Algorithm.  
@@ -433,7 +444,7 @@ The preliminary step is to define the attributes or input group (i.e. 4 features
     y=iris.target  
 
 
-### Step 1 - Split the Datset <a name="splitthedataset"></a>   
+#### Step 1 - Split the Datset <a name="splitthedataset"></a>   
 
 My first step was to split the dataset into training and testing dataset, I have chosen a 75%:25% split:
 75% of the data will be training data - X_train, y_train for training the model
@@ -442,7 +453,7 @@ My first step was to split the dataset into training and testing dataset, I have
     from sklearn.model_selection import train_test_split
     X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
   
-### Step 2 - Training and Testing Dataset shape <a name="trainandtest"></a>     
+#### Step 2 - Training and Testing Dataset shape <a name="trainandtest"></a>     
 
 To show the shape/size of the train and test data samples
 X_train is 75% of 150 = 112 rows of data in 4 columns (the 4 features/variables)
@@ -458,7 +469,7 @@ y_train is 25% of 150 = 38 rows of the species column
 ![](images/4.0.2.traintestshape.PNG)   
 
 
-### Step 3 - Select an algorithm <a name="selectanalgorithm"></a>    
+#### Step 3 - Select an algorithm <a name="selectanalgorithm"></a>    
 
 I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
 k is the number of nearest neighbours and is the core deciding factor. K is set by the user, we can consider any fixed number k of neighbors in the training.   
@@ -467,7 +478,7 @@ The model picks 'k' (as determined by the user) entries in the training data whi
 When k=1, the algorithm is know as the nearest neighbour algorithm.    
 We can now make a prediction using the majority class among them. For our example, we will use one neighbor (k=1). 
 
-### Step 4 - Pass the training set to the algorithm <a name="passthetrainingset"></a>  
+#### Step 4 - Pass the training set to the algorithm <a name="passthetrainingset"></a>  
 
 I now use the fit method of the knn object, to train the algorithm with the training data X_train (containing the training data of the 4 features) and the training output y_train (containing the corresponding species), this builds up our model on the training set.  
 We enter sample data (X_new) and show the shape of the data, it is one row (1 sample) with 4 columns of data (the 4 features/variables sepal and petal measurements).   
@@ -480,7 +491,7 @@ We enter sample data (X_new) and show the shape of the data, it is one row (1 sa
 ![](images/4.0.4.trainingshape.PNG)   
 
 
-### Step 5 - Predict Species <a name="predictspecies"></a>   
+#### Step 5 - Predict Species <a name="predictspecies"></a>   
 
 I now use the predict method of the knn object to predict the species of the sample data X_new and print the outcome. In the iris dataset, it has a species class of 0, also know as the setosa. 
 
@@ -491,7 +502,7 @@ I now use the predict method of the knn object to predict the species of the sam
 ![](images/4.0.5.predictspecies.PNG)   
 
 
-### Step 6 - Check model accuracy <a name="checkmodelaccuracy"></a>    
+#### Step 6 - Check model accuracy <a name="checkmodelaccuracy"></a>    
 
 A question that remains is how can we trust the results of the model.  
 
@@ -522,7 +533,7 @@ This is a high level of accuracy and it means that our model may be trustworthy 
 
 While the iris dataset and classification is simple, it is a good example to illustrate how a machine learning problem should be approached and how useful the outcome can be. 
 
-### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
+#### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
 
 An additional step that can be done is to spot check other algorithms to see their results. 
 I will test 6 different algorithms, this is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.  
@@ -561,7 +572,7 @@ We can see that the box and whisker plots are squashed at the top of the range, 
 
 NOTE NOTE NOTE Make predictions on test/validation dataset 
 
-### Step 8 - Final model selection <a name="finalmodelselection"></a>  
+#### Step 8 - Final model selection <a name="finalmodelselection"></a>  
 
 The results in the previous section suggest that the LDA was the most accurate model, I will use this model as the final model.  
 Now we want to get an idea of the accuracy of the model on our validation set.  
