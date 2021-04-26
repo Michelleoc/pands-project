@@ -159,9 +159,9 @@ plt.show()
 # such as overfitting to the training set or a data leak. Both of these issues will result in an overly optimistic result.
 
 # We can fit the model on the entire training dataset and make predictions on the validation dataset.
-model = LinearDiscriminantAnalysis()
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
+lda = LinearDiscriminantAnalysis()
+lda.fit(X_train, y_train)
+predictions = lda.predict(X_test)
 
 # Evaluate predictions
 # We can evaluate the predictions by comparing them to the expected results in the validation set, 

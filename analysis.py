@@ -51,17 +51,24 @@ print(iris_df.describe())
 # https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/
 print(iris_df[0:5])
 print(iris_df[50:55])
-print(iris_df[100:105])
+print(iris_df[100:105])  
+
+# Shows if duplicates exist within the dataset 
+print(iris_df.duplicated().sum())
+
+# Shows the duplicated rows 
+print (iris_df[iris_df.duplicated()]) 
 
 # To output a summary of each variable (feature) to a single text file
 # input has to be in string format
 # class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 with open("Variable_Summary.txt", "wt") as f:
-    print ("Shape of Data \n", str(iris_df.shape),"\n", file = f)
+    print ("Shape of Data \n", str(iris_df.shape),"\n", file = f) 
     print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)
     print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)
     print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
+
 
 
 # Plotting, displaying and saving a histogram of each variable to png files  
@@ -275,9 +282,9 @@ plt.show()
 # such as overfitting to the training set or a data leak. Both of these issues will result in an overly optimistic result.
 
 # We can fit the model on the entire training dataset and make predictions on the testing dataset.
-model = LinearDiscriminantAnalysis()
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
+lda = LinearDiscriminantAnalysis()
+lda.fit(X_train, y_train)
+predictions = lda.predict(X_test)
 
 # Evaluate predictions
 # We can evaluate the predictions by comparing them to the expected results in the validation set, 

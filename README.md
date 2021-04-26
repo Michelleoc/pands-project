@@ -12,6 +12,7 @@
 3. [Loading and understanding the Iris dataset](#loadingandunderstandingtheirisdataset)
     1. [Loading the dataset](#loadingthedataset)
     2. [Understanding the dataset](#understandingthedataset)
+    3. [Initial Dataset Analysis](#initialdatasetanalysis)
 4. [Data Visualisation](#datavisualisaton)
     1. [Univariate Analysis](#univariateanalysis)
         1. [Historgrams](#histograms)
@@ -79,7 +80,7 @@ The project task was to investigate, analyse and present my findings on the data
         3. KNeighborsClassifier - algorithm that stores all available cases and classifies new cases based on a similarity measure for a defined number of nearest neighbours "K".  
         4. LinearDiscriminantAnalysis - a dimensionality reduction technique, it reduces the number of dimensions (i.e. variables) in a dataset while retaining as much information as possible.  
         5. GaussianNB - used to calculate conditional probability, it assumes that the continuous values associated with each class are distributed according to a normal (or Gaussian) distribution.  
-        6. Support Vector Machine (SVM) Algorithm - uses classification algorithms for two-group classification problems
+        6. Support Vector Machine (SVM) Algorithm - uses classification algorithms for two-group classification problems. While it can be used for regression, it is mostly used for classification. 
 
 
 ## Iris Dataset <a name="irisdataset"></a> 
@@ -227,6 +228,20 @@ I then build upon this to extract different views of the data:
       
     </details>      
 
+
+* Show Duplicate rows
+
+        print(iris_df.duplicated().sum())
+        print (iris_df[iris_df.duplicated()])   
+       
+    <details>
+  <summary>Output </summary>   
+
+    ![](images/2.2.duplicates.PNG)          
+      
+    </details>      
+
+
 * Show the summary of each variable by the species    
 
         print(iris_df.groupby("species").describe())
@@ -241,9 +256,11 @@ To extract this data into a newly created single text file, we need to make the 
         print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)  
         print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
 
+### Initial Dataset Analysis <a name="initialdatasetanalysis"></a>  
+
 Summary of the intial findings show a dataset of 50 rows each for 3 different species of the Iris flower, with no null values in the dataset.  
 The statisical details of the dataset show that the mean range from 5.84 on the sepal length down to 1.19 on the petal width.  
-However when we run the summary by species, due to the variation on the length and width by species, the petal length and petal width might be the best indicators to differentiate the species.  
+When I check for duplicates I expect to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. This highlights the importance of ensuring you upload the most up to date and accurate dataset.  
 
 
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
@@ -262,7 +279,7 @@ There are many visualation options within python using matplotlib and seaborn.
 ### Univariate Analysis <a name="univariateanalysis"></a>  
 
 Univariate analysis is the simplest form of analysing data.   
-“Uni” means “one”, so in other words your data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. 
+“Uni” means “one”, so in other words the data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. In my univariate analysis, I will analyise each feature separately by species. 
 
 #### Historgrams <a name="histograms"></a> 
 
@@ -355,7 +372,7 @@ Summary of all 3 of my Univariate analysis (Histograms, Boxplots and Violinplots
 ### Multivariate Analysis <a name="multivariateanalysis"></a>    
 
 Multivariate analysis helps us understand the relationships between variables (features) & species better, i.e. which variables contributes a lot in classifying species.  
-
+In my multivariate analysis, I will analyse features against each other by species, to determine if any trends can detected. 
 
 #### Scatterplot (Pairsplot) <a name="scatterplot"></a> 
 
@@ -379,12 +396,12 @@ The plot shows that the Petal length and Petal width are the most effective feat
 
 A Heatmap is used to show correlation. Each square shows the correlation between the variables on each axis.   
 Correlation ranges from -1 to +1. Values closer to zero means there is no linear trend between the two variables.    
-The close to 1 the correlation is the more positively correlated they are; that is as one increases so does the other and the closer to 1 the stronger this relationship is.    
+The closer to 1 the correlation is the more positively correlated they are; that is as one increases so does the other and the closer to 1 the stronger this relationship is.    
 A correlation closer to -1 is similar, but instead of both increasing one variable will decrease as the other increases. 
 
 As I plan is to use and train algorithms, the number of features and their correlation plays an important role for this.  
 If there are features that are highly correlated, then training an algorithm with all the features will reduce the accuracy.   
-Therefore features selection needs to be done carefully. The iris dataset has a low number of featues (4) but still we will see the correlation. 
+The iris dataset has a low number of featues (4) but still we will see the correlation. 
 
 Using the heatmap feature in Seaborn, we show the values on the heatmap by inserting "annot = True" and use cmap to pick the colour palette of my choice.  
 
@@ -401,12 +418,19 @@ Using the heatmap feature in Seaborn, we show the values on the heatmap by inser
  
    
 The diagonals are all 1 (light in colour) because those squares are correlating each variable to itself (so it's a perfect correlation).  
-High positive or negative value shows that the features have high correlation, in the iris dataset the petal length and petal width have the highest correlation with a value of 0.96.    
+High positive or negative value (values close to 1 or -1) shows that the features have high correlation, in the iris dataset the petal length and petal width have the highest correlation with a value of 0.96.    
 On the opposite end, the sepal width and the sepal length have the lowest correlation with a value of -0.11.
 
 
-#### Multivariate Conclusion <a name="multivariateconclusion"></a>  
+#### Multivariate Conclusion <a name="multivariateconclusion"></a>    
 
+Similar to the univariate analysis, the Pairsplot shows petal length and petal width to be the best combination of features to determine the species of the flower by their measurements alone. There is clustering in the Versicolor and Virginica species across all features but less so in the petal length and petal width.  
+
+For the heatmap if there are features that are highly correlated, then training an algorithm with all the features will reduce the accuracy.  
+We have some features that are highly correlated, in particular the pairings of Sepal length/Petal length, Petal Width/Petal length and Sepal length/Petal Width.  
+
+Therefore if I was given a new sample of data for the 4 features of the iris flower, I could best predict the species visually by using the Petal Width/Petal length dimensions. 
+However the next section will cover how Python can predict the species. 
 
 https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
 https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
@@ -419,11 +443,12 @@ https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-ma
 
 ## Machine Learning <a name="machinelearning"></a>       
 
-Knowing that the iris dataset is generally the first dataset used as an introduction into Machine Learning, I was interested in 
+Knowing that the iris dataset is generally the first dataset used as an introduction into Machine Learning, I was interested to see how this worked. 
+Python supports machine learning through the Scikit-learn library. It has the tools for predictive data analysis. It features various classification, regression and clustering algorithms and is designed to interoperate with the Python numerical and scientific libraries.  
 
 ### Train and Validate the data (Machine Learning) <a name="trainandvalidatethedata"></a>   
 
-The Iris dataset can be used by a machine learning model to illustrate classification (a method used to determine the type of an object (species in this dataset) by comparison with similar objects that have previously been categorised).   
+The Iris dataset can be used by a machine learning model to illustrate classification, a method used to determine the type of an object (species in this dataset) by comparison with similar objects that have previously been categorised.   
 Once trained on known data, the machine learning model can make a predictive classification by comparing a test object to the output of its training data.
 
 Steps To Be followed When Applying an Algorithm.  
@@ -436,7 +461,7 @@ Steps To Be followed When Applying an Algorithm.
 7. Check against other algorithms.  
 8. Final model selection.  
 
-~ Make note that am using the sklearn.datasets import load_iris
+Using the Scikit-learn library, I import the dataset using "sklearn.datasets import load_iris".  
 
 The preliminary step is to define the attributes or input group (i.e. 4 features sepal length, sepal width, petal length, petal width) as X=iris.data and define the target or output group (species) as y=iris.target.    
 
@@ -471,10 +496,17 @@ y_train is 25% of 150 = 38 rows of the species column
 
 #### Step 3 - Select an algorithm <a name="selectanalgorithm"></a>    
 
+Before selecting an algorithm, I need to decide if it is a classification or regression problem I need to resolve. 
+Fundamentally, classification is about predicting a target/class and regression is about predicting a quantity.
+Classification is the problem of predicting a discrete target/class output for an example and regression is the problem of predicting a continuous quantity output for an example. 
+
+Predicting the species of a flower based on input measurements is a classification problem, therefore I select one of the classification algorithms to start train and validate the data.   
+
 I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
-k is the number of nearest neighbours and is the core deciding factor. K is set by the user, we can consider any fixed number k of neighbors in the training.   
-The algorithm calculates the distance between the new data point with the training examples.  
-The model picks 'k' (as determined by the user) entries in the training data which are closest to the new data point and then is does a majority vote, that is it takes the most common species among those 'k' entries to be the class of the new data point.   
+k is the number of nearest neighbours and is the core deciding factor. I set the K number, the k number can be considered any fixed number k of neighbors in the training.   
+The algorithm calculates the distance between the new data or sample point with the training examples.   
+
+The model picks 'k' (as determined by the user) entries in the training data which are closest to the new data point and then is does a majority vote, that is it takes the most common species among those 'k' entries to be the species of the new data point.   
 When k=1, the algorithm is know as the nearest neighbour algorithm.    
 We can now make a prediction using the majority class among them. For our example, we will use one neighbor (k=1). 
 
@@ -504,13 +536,13 @@ I now use the predict method of the knn object to predict the species of the sam
 
 #### Step 6 - Check model accuracy <a name="checkmodelaccuracy"></a>    
 
-A question that remains is how can we trust the results of the model.  
+One question that can be asked is how can I trust the results of the k nearest neighbours model.  
 
-The test data that was created was not used to build the model, but we do know the correct species for each iris in the test set.   
-Therefore, we can make a prediction for each iris in the test data and compare it against its species, so we can know if the model is correctly predicting the species for a given flower.  
-To measure how well the model works, we can obtain the accuracy of the number of flowers for which the right species was predicted.  
+The test data that was created was not used to build the model, but I do know the correct species for each iris in the test set.   
+Therefore, I can make a prediction for each iris in the test data and compare it against its species, so I can know if the model is correctly predicting the species for a given flower.  
+To measure how well the model works, I can obtain the accuracy of the number of flowers for which the right species was predicted.  
 
-Using the X_test data containing the testing data (25% of the dataset) of the 4 features, I print out the prediction of the species using only the 4 features.  
+Using the X_test data containing the testing data (25% of the dataset) of the 4 features, I print out the prediction (y_pred) of the species using only the 4 features.  
 And then compare the prediction of the species 'y_pred' to the actual species 'y_test'.   
 
     y_pred = knn.predict(X_test)
@@ -529,9 +561,10 @@ Another way to do this would be to use the score method of the knn object, which
 
 For this model, the accuracy on the test set is 0.97, which means the model made the right prediction for 97% of the irises in the given dataset,  
 We can expect the model to be correct 97% of the time for predicting the species of new irises.  
-This is a high level of accuracy and it means that our model may be trustworthy enough to use.  
+This is a high level of accuracy and it means the the K nearest neighbour model is trustworthy.  
 
 While the iris dataset and classification is simple, it is a good example to illustrate how a machine learning problem should be approached and how useful the outcome can be. 
+This explains its popularity on being an introduction into machine learning.  
 
 #### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
 
@@ -570,18 +603,17 @@ A useful way to compare the samples of results for each algorithm is to create a
 
 We can see that the box and whisker plots are squashed at the top of the range, with many evaluations achieving 100% accuracy, and some pushing down into the high 80% accuracies.  
 
-NOTE NOTE NOTE Make predictions on test/validation dataset 
-
 #### Step 8 - Final model selection <a name="finalmodelselection"></a>  
 
-The results in the previous section suggest that the LDA was the most accurate model, I will use this model as the final model.  
+The results in the previous section suggest that the LDA was the most accurate model (this is no surprise as )
+I will use this model as the final model.  
 Now we want to get an idea of the accuracy of the model on our validation set.  
 This will give us an independent final check on the accuracy of the best model.  
 
 I can fit the model on the entire training dataset and make predictions on the testing dataset.
-    model = LinearDiscriminantAnalysis()
-    model.fit(X_train, y_train)
-    predictions = model.predict(X_test)
+    lda = LinearDiscriminantAnalysis()
+    lda.fit(X_train, y_train)
+    predictions = lda.predict(X_test)
 
 We can evaluate the predictions by comparing them to the expected results in the testing set and then calculate classification accuracy, as well as a confusion matrix and a classification report.  
 
@@ -591,16 +623,41 @@ We can evaluate the predictions by comparing them to the expected results in the
 
 ![](images/4.0.7.finalmodelselection.PNG)   
 
-We can see that the accuracy is 1.0 or about 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
+We can see that the accuracy is 1.0 or about 100% on the hold out dataset.    
+The confusion matrix provides an indication of the errors made.
 Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
   
 
 ## Project Conclusion <a name="projectconclusion"></a>     
 
+The Mayplotlib and Seaborn libraries have many features to visually display the data for univariate, bivariate and multivariate analysis. While the Iris dataset is relatively small, these libraries come into their own when dealing with the large dataset that exist in today's world.     
+
+The analysis part of this project shows that the species Setosa is visually different from Veriscolor and Virginica.   
+The background of the dataset reveals that two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus".   
+This poses the question that if Veriscolor and Virginica were picked on the same day with the same apparatus and by the same person, and the Setosa was picked on a different day using a differen apparatus did it influence the outcome as the results of Veriscolor and Virginica are so similar. 
+However Ronald Fisher mentions in his paper that the he uses the "measurements of the flowers of fifty plants each of the two species Iris setosa and Iris versicolor, found growing together in the same colony and measured by Dr E. Anderson", my presumption is it was Setosa and Veriscolor that were measured on the same day. 
+
+
+An interesting example of this is where a computer scientist developed a machine learning system called 'Giraffe' that can play International Master level of chess in 72 hours. It learnt by playing chess against itself. While the system was fed a massive dataset of moves from real chess matches, it used those moves in games it plays against itself, learning which worked in which situation, until it has enough of a knowledge base, 
+
+
+
 
 ## References <a name="references"></a>   
 
-https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3
-https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
-https://machinelearningmastery.com/make-predictions-scikit-learn/
-https://kedro.readthedocs.io/en/stable/02_get_started/05_example_project.html
+1. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
+2. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
+3. https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
+4. https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
+5. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
+6. https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3
+7. https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+8. https://machinelearningmastery.com/make-predictions-scikit-learn/
+9. https://kedro.readthedocs.io/en/stable/02_get_started/05_example_project.html
+10. https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
+11. https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
+12. http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
+13. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
+14. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
+15. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
+16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot   

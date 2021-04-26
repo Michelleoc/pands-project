@@ -15,7 +15,7 @@ df = pd.read_csv(filenameForIrisData)
 iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "sepalwidthcm", "petallength" : "petallengthcm", "petalwidth" : "petalwidthcm", "class" : "species"})
 # print (iris_df)
 
-
+''' 
 # to show the shape of the dataset : (150, 5) 150 rows, 5 columns
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 print(iris_df.shape)
@@ -32,6 +32,7 @@ print(iris_df.describe())
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 # print(iris.df.groupby('Species').size())
 
+''' 
 print(iris_df.duplicated().sum())
 
 print (iris_df[iris_df.duplicated()])  
@@ -40,5 +41,7 @@ plt.title('Species Count')
 sns.countplot(iris_df['species'])
 plt.show()
 
-
-
+print(iris_df['species'].value_counts())
+# print(iris_df['Iris-setosa'].describe())
+# print(iris_df['Iris-virginica'].describe())
+# print(iris_df['Iris-veriscolor'].describe())
