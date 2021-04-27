@@ -21,55 +21,80 @@ from sklearn.model_selection import train_test_split #to split the dataset for t
 
 # Import the dataset from iris.csv file 
 path = ""
-filenameForIrisData = path + "iris.csv"
-df = pd.read_csv(filenameForIrisData)
+filenameForIrisData = path + "irisoriginal.csv"
+dataframe = pd.read_csv(filenameForIrisData)
 
 # Rename column titles
 # https://www.geeksforgeeks.org/python-pandas-dataframe-rename/
-iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)", "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
+iris_dataframe = dataframe.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)", "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
 
 # To show the full list print (iris_df), but for now I just want to see the first 5 rows of data 
-print(iris_df.head(5))   
+print(iris_dataframe.head(5))   
 
 # To show the shape of the dataset : (150, 5) 150 rows, 5 columns
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
-print(iris_df.shape)
+print(iris_dataframe.shape)
 
 # Shows the number of instances and the number of attributes in the dataset. 
 # Show if there are any null values
-print(iris_df.info())
+print(iris_dataframe.info())
 
 # View how many instances the data frame containsby species
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
-print(iris_df.groupby('species').size())   
+print(iris_dataframe.groupby('species').size())   
 
 # Shows the basic statistical details of a the dataframe (iris dataset)
 # https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-print(iris_df.describe())  
+print(iris_dataframe.describe())  
 
 # Shows the first 5 rows of each type of species
 # https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/
-print(iris_df[0:5])
-print(iris_df[50:55])
-print(iris_df[100:105])  
+print(iris_dataframe[0:5])
+print(iris_dataframe[50:55])
+print(iris_dataframe[100:105])  
 
 # Shows if duplicates exist within the dataset 
-print(iris_df.duplicated().sum())
+print(iris_dataframe.duplicated().sum())
 
 # Shows the duplicated rows 
-print (iris_df[iris_df.duplicated()]) 
+print (iris_dataframe[iris_dataframe.duplicated()]) 
 
 # To output a summary of each variable (feature) to a single text file
 # input has to be in string format
 # class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 with open("Variable_Summary.txt", "wt") as f:
-    print ("Shape of Data \n", str(iris_df.shape),"\n", file = f) 
-    print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)
-    print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)
-    print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
+    print ("Shape of Data \n", str(iris_dataframe.shape),"\n", file = f) 
+    print ("Count by Species \n", str(iris_dataframe.groupby('species').size()),"\n", file = f)
+    print ("Statistical Data feature \n", str(iris_dataframe.describe()),"\n", file = f)
+    print ("Summary of each feature by species \n",str(iris_dataframe.groupby("species").describe()), "\n", file = f)
 
+# The duplicate row analysis above highlighted that my original dataset was incorrect (only 1 duplicate should exist, not 3).  
+# Therefore I import the correct iris dataset.   
 
+path = ""
+filenameForIrisData = path + "iris.csv"
+df = pd.read_csv(filenameForIrisData)
+
+iris_df = df.rename(columns = {"sepallength" : "Sepal_length(cm)", "sepalwidth" : "Sepal_width(cm)", "petallength" : "Petal_length(cm)", "petalwidth" : "Petal_width(cm)", "class" : "species"})
+
+# Checking to ensure I now only have 1 duplicate  
+print(iris_df.duplicated().sum())
+print (iris_df[iris_df.duplicated()])   
+
+# I start by showing a simple histogram of each 4 features
+# https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn
+
+# This sets out the layout and size of the visual ouput
+fig, axs = plt.subplots(2, 2, figsize=(7, 7))
+
+# list the data source, followed by the x axis source, the colour of the columns and the position in the layout
+sns.histplot(data=iris_df, x="Sepal_length(cm)", color="skyblue", ax=axs[0, 0])
+sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
+sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
+sns.histplot(data=iris_df, x="Sepal_width(cm)", color="teal", ax=axs[1, 1])
+plt.savefig("Features_Histogram.png")
+plt.show()
 
 # Plotting, displaying and saving a histogram of each variable to png files  
 # https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
@@ -126,7 +151,8 @@ sns.violinplot(x='species',y='Petal_width(cm)',data=iris_df)
 plt.subplot(2,2,3)
 sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
 plt.subplot(2,2,4)
-sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
+sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df) 
+plt.savefig("Violin_plot.png")
 plt.show()
 
 
@@ -135,6 +161,7 @@ plt.show()
 # Scatterplot matrices are very good visualization tools and may help identify correlations or lack of it
 # https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
 sns.pairplot(iris_df, hue="species", diag_kind="kde")
+plt.savefig("Pairsplot.png")
 plt.show()
 
 
@@ -153,6 +180,7 @@ print(iris_df.corr())
 # https://www.kaggle.com/ash316/ml-from-scratch-with-iris
 plt.figure(figsize=(15,10))
 sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
+plt.savefig("Heatmap.png")
 plt.show()
 
 from sklearn.datasets import load_iris

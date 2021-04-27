@@ -14,11 +14,11 @@
     2. [Understanding the dataset](#understandingthedataset)
     3. [Initial Dataset Analysis](#initialdatasetanalysis)
 4. [Data Visualisation](#datavisualisaton)
-    1. [Univariate Analysis](#univariateanalysis)
+    1. [Univariate & Bivariate Analysis](#univariateanalysis)
         1. [Historgrams](#histograms)
         1. [Boxplots](#boxplots)
         1. [Violinplots](#violinplots)
-        1. [Univariate Analysis](#univariateanalysis)
+        1. [Univariate & Bivariate Analysis](#univariateanalysis)
     2. [Multivariate Analysis](#multivariateanalysis)
         1. [Scatterplot (Pairsplot)](#scatterplot)
         1. [Correlation and Heatmaps](#correlationandHeatmaps)
@@ -45,7 +45,21 @@
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
 The project task was to investigate, analyse and present my findings on the dataset using python.       
 
-** List all the files in the folder**  
+The following files make up my project submission
+1. README file  
+2. Analysis.py (python script file) 
+3. Iris dataset (iris.csv and irisoriginal.csv)   
+4. Variable Summary txt file  
+5. Plots
+    - Features Histogram
+    - Petal Length
+    - Petal Width 
+    - Sepal Length 
+    - Sepal Width 
+    - Box Plot 
+    - Violin Plot 
+    - Pairs Plot 
+    - Heatmap  
 
 
 ### Python Programs used in Project <a name="PythonProgramsusedinProject"></a>
@@ -253,15 +267,18 @@ To extract this data into a newly created single text file, we need to make the 
         with open("Variable_Summary.txt", "wt") as f:  
         print ("Shape of Data \n", str(iris_df.shape),"\n", file = f)  
         print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)  
-        print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)  
+        print ("Statistical Data by feature \n", str(iris_df.describe()),"\n", file = f)  
         print ("Summary of each feature by species \n",str(iris_df.groupby("species").describe()), "\n", file = f)
 
 ### Initial Dataset Analysis <a name="initialdatasetanalysis"></a>  
 
 Summary of the intial findings show a dataset of 50 rows each for 3 different species of the Iris flower, with no null values in the dataset.  
-The statisical details of the dataset show that the mean range from 5.84 on the sepal length down to 1.19 on the petal width.  
-When I check for duplicates I expect to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. This highlights the importance of ensuring you upload the most up to date and accurate dataset.  
+The statisical details of the dataset show that the mean range from 5.84 on the sepal length down to 1.19 on the petal width.     
+The 50% for Sepal length and Sepal width are very close to the mean, this indicates a normal distribution as 50% of the results are above the median and 50% are below.   
+In contrast for Petal length, its 50% is higher than the median of 3.75. Therefore 50% of the results are above 4.35, and the remaining 50% below 4.35. This indicates the distribution is skewed. 
 
+When I check for duplicates I expect to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. It is noted on the UCI - Machine learning repository webpage that the dataset on their page differs from the data presented in Fishers article. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset.   
+I change my dataset to reflect the correct data and all analysis herein in the project are based on the correct data as listed on Ronald Fisher's article.  
 
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
@@ -274,16 +291,35 @@ https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/
 
 With a basic understanding of the dataset, we move to data visualisation to help us compare and observe trends within the data.  
 
-There are many visualation options within python using matplotlib and seaborn.    
+Python has many visualation options using matplotlib and seaborn libraries. I explore some of these options in my Univariate, Bivariate and Multivariate analysis outlined below. 
 
-### Univariate Analysis <a name="univariateanalysis"></a>  
+### Univariate & Bivariate Analysis <a name="univariateanalysis"></a>  
 
 Univariate analysis is the simplest form of analysing data.   
-“Uni” means “one”, so in other words the data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. In my univariate analysis, I will analyise each feature separately by species. 
+“Uni” means “one”, so in other words the data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. Bivariate analysis is used to find out if there is a relationship between two different variables. For this part of my analyis, I will treat the species as one variable and the individual features as th other variable.  
 
 #### Historgrams <a name="histograms"></a> 
 
-Histograms is a classic visualisation tool that show the distribution of the number of observations that fall within in a bin.    
+Histograms is a classic visualisation tool that show the distribution of the number of observations that fall within in a bin.      
+
+I being start by showing a simple histogram of each of the 4 features. 
+
+The first line of code sets out the layout and size of the visual ouput.   
+To build the histogram I outline the source of the data, the x axis source, the colour of the columns and the position in the layout.     
+
+    fig, axs = plt.subplots(2, 2, figsize=(7, 7))
+    sns.histplot(data=iris_df, x="Sepal_length(cm)", color="skyblue", ax=axs[0, 0])
+    sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
+    sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
+    sns.histplot(data=iris_df, x="Sepal_width(cm)", color="teal", ax=axs[1, 1])
+    plt.savefig("Features_Histogram.png")
+    plt.show()  
+
+![](Features_Histogram.png) 
+
+While Univariate visuals are useful for an overall data group summary, it doesn't help us to analyse by the species.  
+I move from Univariate to Bivariate Histograms to bring in the class of species by feature into the visuals. 
+
 FacetGrid within Seaborn is a multi-plot grid to help visualise distribution of a variable.  
 The 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual.   
 
@@ -297,10 +333,10 @@ The 'hue' option allows a variable that determines the colour of the plot elemen
     plt.savefig("Sepal_Width.png")
     plt.show()   
 
-![](images/3.1.1.Histogram_PetalLength.PNG) 
-![](images/3.1.1.Histogram_PetalWidth.PNG) 
-![](images/3.1.1.Histogram_SepalLength.PNG)   
-![](images/3.1.1.Histogram_SepalWidth.PNG)   
+![](Petal_Length.png) 
+![](Petal_Width.png) 
+![](Sepal_Length.png)   
+![](Sepal_Width.png)   
 
 The outputting plots show that for petal length and petal width we can separate/differeniate the species Setosa from the other 2 species Virginica and Versicolor.    
 Using sepal length and sepal width, it is not possible from looking at histogram charts to separate the flowers as the results overlap between all 3 species.   
@@ -355,18 +391,19 @@ On the plot the x axis is the species type, y axis is the attribute.
     sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
     plt.subplot(2,2,4)
     sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
+    plt.savefig("Violin_plot.png")
     plt.show()    
 
-![](images/3.1.3.violinplot.PNG)       
+![](Violin_plot.png)       
 
 The Violinplot shows that Iris Virginica has highest median value in petal length, petal width and sepal length when compared against Versicolor and Setosa.  
 However, Iris Setosa has the highest sepal width median value.     
 The violin plot also indicates that the weight of the Setosa's petal length and petal width are highly concentrated around the median (i.e. they are fatter around the median), where are the Versicolor and Virginica are thinner for both of these features. 
 
 
-#### Univariate Conclusion <a name="univariateconclusion"></a>  
+#### Univariate & Bivariate Conclusion <a name="univariateconclusion"></a>  
 
-Summary of all 3 of my Univariate analysis (Histograms, Boxplots and Violinplots) show for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
+Summary of all 3 of my analysis (Histograms, Boxplots and Violinplots) show for the Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
 
 
 ### Multivariate Analysis <a name="multivariateanalysis"></a>    
@@ -388,7 +425,10 @@ Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen
 
 For each pair of variables, we can use a scatter plot to visualize their joint distribution 
     sns.pairplot(iris_df, hue="species", diag_kind="kde")  
-    plt.show()  
+    plt.savefig("Pairsplot.png")
+    plt.show()    
+
+![](Pairsplot.png)       
 
 The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. The species of Virginica and Versicolor cannot be easily separated based on their measurements. 
 
@@ -411,9 +451,10 @@ Using the heatmap feature in Seaborn, we show the values on the heatmap by inser
 
     plt.figure(figsize=(15,10))
     sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
+    plt.savefig("Heatmap.png")
     plt.show()
 
-![](images/3.1.2.heatmaps.PNG)   
+![](Heatmap.png)   
 
  
    
@@ -424,7 +465,7 @@ On the opposite end, the sepal width and the sepal length have the lowest correl
 
 #### Multivariate Conclusion <a name="multivariateconclusion"></a>    
 
-Similar to the univariate analysis, the Pairsplot shows petal length and petal width to be the best combination of features to determine the species of the flower by their measurements alone. There is clustering in the Versicolor and Virginica species across all features but less so in the petal length and petal width.  
+Similar to the univariate & bivariate analysis, the Pairsplot shows petal length and petal width to be the best combination of features to determine the species of the flower by their measurements alone. There is clustering in the Versicolor and Virginica species across all features but less so in the petal length and petal width.  
 
 For the heatmap if there are features that are highly correlated, then training an algorithm with all the features will reduce the accuracy.  
 We have some features that are highly correlated, in particular the pairings of Sepal length/Petal length, Petal Width/Petal length and Sepal length/Petal Width.  
@@ -432,6 +473,7 @@ We have some features that are highly correlated, in particular the pairings of 
 Therefore if I was given a new sample of data for the 4 features of the iris flower, I could best predict the species visually by using the Petal Width/Petal length dimensions. 
 However the next section will cover how Python can predict the species. 
 
+https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn
 https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
 https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
 http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
@@ -439,6 +481,7 @@ https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python
 https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
 https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
 https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot    
+ 
 
 
 ## Machine Learning <a name="machinelearning"></a>       
@@ -630,23 +673,30 @@ Finally, the classification report provides a breakdown of each class by precisi
 
 ## Project Conclusion <a name="projectconclusion"></a>     
 
-The Mayplotlib and Seaborn libraries have many features to visually display the data for univariate, bivariate and multivariate analysis. While the Iris dataset is relatively small, these libraries come into their own when dealing with the large dataset that exist in today's world.     
+The initial data analysis shows a relativily small dataset of 50 samples for 3 species with no null values. However when checking for duplicates, it showed I had 3 instead of the expected 1. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset. The output you get out is only as good and as accurate as the data you put in. 
+
+The Mayplotlib and Seaborn libraries have many features to visually display the data for univariate, bivariate and multivariate analysis. While the Iris dataset is relatively small, these libraries come into their own when dealing with the large dataset that exist in today's world.  
+Starting with Univariate and Bivariate visuals, I build up my understanding of the dataset and started to see trends in petal length feature that indicate it would be the best feature to predict a species by.  
 
 The analysis part of this project shows that the species Setosa is visually different from Veriscolor and Virginica.   
 The background of the dataset reveals that two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus".   
 This poses the question that if Veriscolor and Virginica were picked on the same day with the same apparatus and by the same person, and the Setosa was picked on a different day using a differen apparatus did it influence the outcome as the results of Veriscolor and Virginica are so similar. 
-However Ronald Fisher mentions in his paper that the he uses the "measurements of the flowers of fifty plants each of the two species Iris setosa and Iris versicolor, found growing together in the same colony and measured by Dr E. Anderson", my presumption is it was Setosa and Veriscolor that were measured on the same day. 
+However Ronald Fisher mentions in his paper that the he uses the "measurements of the flowers of fifty plants each of the two species Iris setosa and Iris versicolor, found growing together in the same colony and measured by Dr E. Anderson", my presumption is it was Setosa and Veriscolor that were measured on the same day.   
 
+I then moved onto the Multivariate analysis, the Pairs plot showed the best feature combination to predict the species visually is by using the Petal Width/Petal length dimensions. If I had new sample data for the 4 features of the Iris flower, I could best predict the species visually by using these features.  
 
-An interesting example of this is where a computer scientist developed a machine learning system called 'Giraffe' that can play International Master level of chess in 72 hours. It learnt by playing chess against itself. While the system was fed a massive dataset of moves from real chess matches, it used those moves in games it plays against itself, learning which worked in which situation, until it has enough of a knowledge base, 
+However since Machine learning and artificial intelligence-based projects are what the future holds, I took the path of using Python to explore machine learning to predict the species.   
 
+Python supports machine learning through its extensive set of libraries especially the Scikit-learn library which I used in my testing.  I did a an 8 step process from training and testing the dataset, using the KNN algorithm to predict the species, checking the accuracy of the KNN model and finished up with checking it against some of the other machine learning algorithms with a final model selection based on the most accurate model which turned out to be LDA (Linear discriminant analysis).  
 
+An interesting example of Machine learning is where a computer scientist developed a machine learning system called 'Giraffe' that can play International Master level of chess in 72 hours. It learnt by playing chess against itself. While the system was fed a massive dataset of moves from real chess matches, it used those moves in games it plays against itself, learning which worked in which situation, all the time building up its knowledge base. Fundamentally we are teaching technology to teach itself.   
+
+While the Iris dataset is not on the scale of the chess example above, it is a great example of showing at an introduction level how we can use machine learning programming languages to think like a human brain does.
 
 
 ## References <a name="references"></a>   
 
 1. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
-2. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 3. https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 4. https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
 5. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
@@ -660,4 +710,5 @@ An interesting example of this is where a computer scientist developed a machine
 13. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
 14. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
 15. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
-16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot   
+16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot     
+17. https://qz.com/502325/an-ai-computer-learned-how-to-beat-almost-anyone-at-chess-in-72-hours/

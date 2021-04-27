@@ -52,9 +52,26 @@ plt.xlabel("Petal Width cm")
 plt.ylabel("Count")
 # plt.savefig("Petal_Width.png")
 plt.show()
+
+
+# histograms 
+
+sns.FacetGrid(iris_df,height=5).map(sns.histplot,"petallengthcm").add_legend()
+plt.subplot(2,2,1)    
+# plt.savefig("Petal_Length.png")
+sns.FacetGrid(iris_df,height=5).map(sns.histplot,"petalwidthcm").add_legend()
+plt.subplot(2,2,2)  
+# plt.savefig("Petal_Width.png")
+sns.FacetGrid(iris_df,height=5).map(sns.histplot,"sepallengthcm").add_legend()
+plt.subplot(2,2,3)  
+# plt.savefig("Sepal_Length.png")
+sns.FacetGrid(iris_df,height=5).map(sns.histplot,"sepalwidthcm").add_legend()
+plt.subplot(2,2,4)  
+# plt.savefig("Histograms.png")
+plt.show()
+
+
 '''
-
-
 # histograms by species 
 sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"petallengthcm").add_legend()
 # plt.subplot(2,2,1)    
@@ -70,3 +87,14 @@ sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"sepalwidthcm").a
 # plt.savefig("Sepal_Width.png")
 plt.show()
 
+
+fig, axs = plt.subplots(2, 2, figsize=(7, 7))
+
+sns.histplot(data=iris_df, x="sepallengthcm", color="skyblue", ax=axs[0, 0])
+sns.histplot(data=iris_df, x="sepalwidthcm", color="olive", ax=axs[0, 1])
+sns.histplot(data=iris_df, x="petallengthcm", color="gold", ax=axs[1, 0])
+sns.histplot(data=iris_df, x="petalwidthcm", color="teal", ax=axs[1, 1])
+plt.savefig("Features Histogram.png")
+plt.show()
+
+# https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn
