@@ -94,7 +94,7 @@ sns.histplot(data=iris_df, x="sepallengthcm", color="skyblue", ax=axs[0, 0])
 sns.histplot(data=iris_df, x="sepalwidthcm", color="olive", ax=axs[0, 1])
 sns.histplot(data=iris_df, x="petallengthcm", color="gold", ax=axs[1, 0])
 sns.histplot(data=iris_df, x="petalwidthcm", color="teal", ax=axs[1, 1])
-plt.savefig("Features Histogram.png")
+plt.savefig("Plots/Features Histogram.png")
 plt.show()
 
 # https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn

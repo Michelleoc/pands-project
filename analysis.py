@@ -1,23 +1,23 @@
 # Investigating the Iris Dataset
 # Author : Michelle O'Connor
 
-import pandas as pd             # data processing and csv file i/o library
-import numpy as np              # 
-import seaborn as sns           # 
-import matplotlib.pyplot as plt # plotting library
-from sklearn import model_selection # Python graphing library based on matplotlib
+import pandas as pd             
+import numpy as np              
+import seaborn as sns           
+import matplotlib.pyplot as plt 
+from sklearn import model_selection 
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression # # for Logistic Regression algorithm
-from sklearn.tree import DecisionTreeClassifier #for using Decision Tree Algoithm
-from sklearn.neighbors import KNeighborsClassifier # for K nearest neighbours
+from sklearn.linear_model import LogisticRegression 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.neighbors import KNeighborsClassifier 
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC #for Support Vector Machine (SVM) Algorithm
+from sklearn.svm import SVC 
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import train_test_split #to split the dataset for training and testing
+from sklearn.model_selection import train_test_split 
 
 # Import the dataset from iris.csv file 
 path = ""
@@ -93,7 +93,7 @@ sns.histplot(data=iris_df, x="Sepal_length(cm)", color="skyblue", ax=axs[0, 0])
 sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
 sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
 sns.histplot(data=iris_df, x="Sepal_width(cm)", color="teal", ax=axs[1, 1])
-plt.savefig("Features_Histogram.png")
+plt.savefig("Plot_Images/Features_Histogram.png")
 plt.show()
 
 # Plotting, displaying and saving a histogram of each variable to png files  
@@ -107,13 +107,13 @@ plt.show()
 # plt.show() = displaying the histogram  
 
 sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_length(cm)").add_legend()
-plt.savefig("Petal_Length.png")
+plt.savefig("Plot_Images/Petal_Length.png")
 sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_width(cm)").add_legend()
-plt.savefig("Petal_Width.png")
+plt.savefig("Plot_Images/Petal_Width.png")
 sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_length(cm)").add_legend()
-plt.savefig("Sepal_Length.png")
+plt.savefig("Plot_Images/Sepal_Length.png")
 sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_width(cm)").add_legend()
-plt.savefig("Sepal_Width.png")
+plt.savefig("Plot_Images/Sepal_Width.png")
 plt.show()
 
 
@@ -134,7 +134,7 @@ plt.subplot(2,2,3)
 sns.boxplot(x='species',y='Petal_length(cm)',data=iris_df)     
 plt.subplot(2,2,4)    
 sns.boxplot(x='species',y='Petal_width(cm)',data=iris_df)
-plt.savefig("Box_plot.png")
+plt.savefig("Plot_Images/Box_plot.png")
 plt.show()
 
 # Violinplot grouped by series
@@ -152,7 +152,7 @@ plt.subplot(2,2,3)
 sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
 plt.subplot(2,2,4)
 sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df) 
-plt.savefig("Violin_plot.png")
+plt.savefig("Plot_Images/Violin_plot.png")
 plt.show()
 
 
@@ -161,7 +161,7 @@ plt.show()
 # Scatterplot matrices are very good visualization tools and may help identify correlations or lack of it
 # https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
 sns.pairplot(iris_df, hue="species", diag_kind="kde")
-plt.savefig("Pairsplot.png")
+plt.savefig("Plot_Images/Pairsplot.png")
 plt.show()
 
 
@@ -180,7 +180,7 @@ print(iris_df.corr())
 # https://www.kaggle.com/ash316/ml-from-scratch-with-iris
 plt.figure(figsize=(15,10))
 sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
-plt.savefig("Heatmap.png")
+plt.savefig("Plot_Images/Heatmap.png")
 plt.show()
 
 from sklearn.datasets import load_iris
@@ -269,7 +269,7 @@ print("Test set score (knn.score): {:.2f}".format(knn.score(X_test, y_test)))
 # https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 # https://machinelearningmastery.com/make-predictions-scikit-learn/
 
-# I spot Check other Algorithms to see 
+# I spot Check other Algorithms to see their results. 
 # We get an idea from the plots that some of the classes are partially linearly separable in some dimensions, so we are expecting generally good result
 # we will test 6 different algorithms 
 # This is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.
@@ -282,15 +282,19 @@ models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
 models.append(('SVM', SVC(gamma='auto')))
 
-# evaluate each model in turn
+# evaluate each model in turn 
+# Cross-validation is primarily used in applied machine learning to estimate the skill of a machine learning model on unseen data.
 results = []
 names = []
 for name, model in models:
+	# With KFolds and shuffle, the data is shuffled once at the start, and then divided into the number of splits set out (in this case 10 splits)
+	# The test set does not overlap with the training set 
 	kfold = StratifiedKFold(n_splits=10, random_state=1, shuffle=True)
+
 	cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
 	results.append(cv_results)
 	names.append(name)
-	print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
+	print('%s: accuracy %f with a standard deviation of (%f)' % (name, cv_results.mean(), cv_results.std()))
 
 # We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. 
 # A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
@@ -303,26 +307,27 @@ plt.show()
 
 # Make predictions on test/validation dataset 
 
-# The results in the previous section suggest that the LDA was perhaps the most accurate model. We will use this model as our final model.
-# Now we want to get an idea of the accuracy of the model on our validation set.
-# This will give us an independent final check on the accuracy of the best model. 
-# It is valuable to keep a testing set just in case you made a slip during training, 
-# such as overfitting to the training set or a data leak. Both of these issues will result in an overly optimistic result.
+# The results in the previous section suggest that the LDA was perhaps the most accurate model. I will use this model as our final model.
+# Now I want to get an idea of the accuracy of the model on our testing set.
+# This will give an independent final check on the accuracy of the best model. 
 
-# We can fit the model on the entire training dataset and make predictions on the testing dataset.
+# Similar to Step 4 above, I pass the training set to the LDA algorithm. I fit the model on the entire training dataset 
 lda = LinearDiscriminantAnalysis()
 lda.fit(X_train, y_train)
-predictions = lda.predict(X_test)
+# And then make predictions on the testing dataset
+# the predictions from the algorithm are labelled as LDApredicitions. 
+LDApredictions = lda.predict(X_test)
 
 # Evaluate predictions
-# We can evaluate the predictions by comparing them to the expected results in the validation set, 
+# Evaluate the predictions (LDApredicitions) of the LDA model by comparing them  
+# to the expected results in the testing set (y_test), i.e. the species of the test dataset.  
 # then calculate classification accuracy, as well as a confusion matrix and a classification report.
 
-print(accuracy_score(y_test, predictions))
-print(confusion_matrix(y_test, predictions))
-print(classification_report(y_test, predictions))
+print(accuracy_score(y_test, LDApredictions))
+print(confusion_matrix(y_test, LDApredictions))
+print(classification_report(y_test, LDApredictions))
 
-# We can see that the accuracy is 1.0 or about 100% on the hold out dataset.
+# can see that the accuracy is 1.0 or about 100% on the hold out dataset.
 # The confusion matrix provides an indication of the errors made.
 # Finally, the classification report provides a breakdown of each class by precision,
 # recall, f1-score and support showing excellent results (granted the validation dataset was small).

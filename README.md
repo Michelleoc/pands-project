@@ -45,12 +45,12 @@
 The 2021 Programming and Scripting project is based on the well-known Fisher's Iris Dataset.  
 The project task was to investigate, analyse and present my findings on the dataset using python.       
 
-The following files make up my project submission
+The following files are my project submission:
 1. README file  
 2. Analysis.py (python script file) 
 3. Iris dataset (iris.csv and irisoriginal.csv)   
 4. Variable Summary txt file  
-5. Plots
+5. Plots Images folder
     - Features Histogram
     - Petal Length
     - Petal Width 
@@ -277,8 +277,8 @@ The statisical details of the dataset show that the mean range from 5.84 on the 
 The 50% for Sepal length and Sepal width are very close to the mean, this indicates a normal distribution as 50% of the results are above the median and 50% are below.   
 In contrast for Petal length, its 50% is higher than the median of 3.75. Therefore 50% of the results are above 4.35, and the remaining 50% below 4.35. This indicates the distribution is skewed. 
 
-When I check for duplicates I expect to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. It is noted on the UCI - Machine learning repository webpage that the dataset on their page differs from the data presented in Fishers article. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset.   
-I change my dataset to reflect the correct data and all analysis herein in the project are based on the correct data as listed on Ronald Fisher's article.  
+When I check for duplicates I expected to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. It is noted on the UCI - Machine learning repository webpage that the dataset on their page differs from the data presented in Fishers article. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset.   
+I changed my dataset to reflect the correct data and all analysis herein in the project are based on the correct data as listed on Ronald Fisher's article.  
 
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
@@ -295,8 +295,8 @@ Python has many visualation options using matplotlib and seaborn libraries. I ex
 
 ### Univariate & Bivariate Analysis <a name="univariateanalysis"></a>  
 
-Univariate analysis is the simplest form of analysing data.   
-“Uni” means “one”, so in other words the data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data. Bivariate analysis is used to find out if there is a relationship between two different variables. For this part of my analyis, I will treat the species as one variable and the individual features as th other variable.  
+Univariate analysis is the simplest form of analysing data. “Uni” means “one”, so in other words the data has only one variable. It doesn’t deal with causes or relationships and its major purpose is to describe; it takes data, summarizes that data and finds patterns in the data.   
+Bivariate analysis is used to find out if there is a relationship between two different variables. For this part of my analyis, I will treat the species as one variable and the individual features as th other variable.  
 
 #### Historgrams <a name="histograms"></a> 
 
@@ -312,10 +312,10 @@ To build the histogram I outline the source of the data, the x axis source, the 
     sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
     sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
     sns.histplot(data=iris_df, x="Sepal_width(cm)", color="teal", ax=axs[1, 1])
-    plt.savefig("Features_Histogram.png")
+    plt.savefig("Plot_Images//Features_Histogram.png")
     plt.show()  
 
-![](Features_Histogram.png) 
+![](Plot_Images/Features_Histogram.png) 
 
 While Univariate visuals are useful for an overall data group summary, it doesn't help us to analyse by the species.  
 I move from Univariate to Bivariate Histograms to bring in the class of species by feature into the visuals. 
@@ -324,19 +324,19 @@ FacetGrid within Seaborn is a multi-plot grid to help visualise distribution of 
 The 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual.   
 
     sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_length(cm)").add_legend()
-    plt.savefig("Petal_Length.png")
+    plt.savefig("Plot_Images/Petal_Length.png")
     sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Petal_width(cm)").add_legend()
-    plt.savefig("Petal_Width.png")
+    plt.savefig("Plot_Images/Petal_Width.png")
     sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_length(cm)").add_legend()
-    plt.savefig("Sepal_Length.png")
+    plt.savefig("Plot_Images/Sepal_Length.png")
     sns.FacetGrid(iris_df,hue="species",height=5).map(sns.histplot,"Sepal_width(cm)").add_legend()
-    plt.savefig("Sepal_Width.png")
+    plt.savefig("Plot_Images/Sepal_Width.png")
     plt.show()   
 
-![](Petal_Length.png) 
-![](Petal_Width.png) 
-![](Sepal_Length.png)   
-![](Sepal_Width.png)   
+![](Plot_Images/Petal_Length.png) 
+![](Plot_Images/Petal_Width.png) 
+![](Plot_Images/Sepal_Length.png)   
+![](Plot_Images/Sepal_Width.png)   
 
 The outputting plots show that for petal length and petal width we can separate/differeniate the species Setosa from the other 2 species Virginica and Versicolor.    
 Using sepal length and sepal width, it is not possible from looking at histogram charts to separate the flowers as the results overlap between all 3 species.   
@@ -363,10 +363,10 @@ On the plot the x axis is the species type, y axis is the attribute
     sns.boxplot(x='species',y='Petal_length(cm)',data=iris_df)     
     plt.subplot(2,2,4)    
     sns.boxplot(x='species',y='Petal_width(cm)',data=iris_df)
-    plt.savefig("Box_plot.png")
+    plt.savefig("Plot_Images/Box_plot.png")
     plt.show()   
 
-![](Box_plot.png)    
+![](Plot_Images/Box_plot.png)    
 
 Analyising the box plots, the sepal length and sepal width data results are close, with some overlap between all 3 species.   
 However similiar to the initial view of the dataset and the histograms, the box plots show us that for Iris Setosa the petal length and petal width is visually clearly different from the Veriscolor and Virginica.   
@@ -391,10 +391,10 @@ On the plot the x axis is the species type, y axis is the attribute.
     sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
     plt.subplot(2,2,4)
     sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
-    plt.savefig("Violin_plot.png")
+    plt.savefig("Plot_Images/Violin_plot.png")
     plt.show()    
 
-![](Violin_plot.png)       
+![](Plot_Images/Violin_plot.png)       
 
 The Violinplot shows that Iris Virginica has highest median value in petal length, petal width and sepal length when compared against Versicolor and Setosa.  
 However, Iris Setosa has the highest sepal width median value.     
@@ -425,10 +425,10 @@ Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen
 
 For each pair of variables, we can use a scatter plot to visualize their joint distribution 
     sns.pairplot(iris_df, hue="species", diag_kind="kde")  
-    plt.savefig("Pairsplot.png")
+    plt.savefig("Plot_Images/Pairsplot.png")  
     plt.show()    
 
-![](Pairsplot.png)       
+![](Plot_Images//Pairsplot.png)       
 
 The plot shows that the Petal length and Petal width are the most effective features to identify the different species of Iris. The species of Virginica and Versicolor cannot be easily separated based on their measurements. 
 
@@ -447,14 +447,14 @@ Using the heatmap feature in Seaborn, we show the values on the heatmap by inser
 
     print(iris_df.corr())  
 
-![](images/3.1.2.heatmapsnumbers.PNG)   
+![](images/3.2.2.heatmapsnumbers.PNG)   
 
     plt.figure(figsize=(15,10))
     sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
-    plt.savefig("Heatmap.png")
+    plt.savefig("Plot_Images/Heatmap.png")
     plt.show()
 
-![](Heatmap.png)   
+![](Plot_Images/Heatmap.png)   
 
  
    
@@ -494,7 +494,7 @@ Python supports machine learning through the Scikit-learn library. It has the to
 The Iris dataset can be used by a machine learning model to illustrate classification, a method used to determine the type of an object (species in this dataset) by comparison with similar objects that have previously been categorised.   
 Once trained on known data, the machine learning model can make a predictive classification by comparing a test object to the output of its training data.
 
-Steps To Be followed When Applying an Algorithm.  
+Steps to be followed when applying an algorithm.  
 1. Split the dataset into training and testing dataset.  
 2. The testing dataset is generally smaller than training one as it will help in training the model better. I have chosen a 75%:25% training:testing split.  
 3. Select an algorithm based on the problem (classification or regression). 
@@ -506,7 +506,7 @@ Steps To Be followed When Applying an Algorithm.
 
 Using the Scikit-learn library, I import the dataset using "sklearn.datasets import load_iris".  
 
-The preliminary step is to define the attributes or input group (i.e. 4 features sepal length, sepal width, petal length, petal width) as X=iris.data and define the target or output group (species) as y=iris.target.    
+The preliminary step is to define the attributes or input group (i.e. 4 features sepal length, sepal width, petal length, petal width) as X=iris.data and define the target or what we want to predict (species) as y=iris.target.    
 
     X=iris.data
     y=iris.target  
@@ -514,38 +514,41 @@ The preliminary step is to define the attributes or input group (i.e. 4 features
 
 #### Step 1 - Split the Datset <a name="splitthedataset"></a>   
 
-My first step was to split the dataset into training and testing dataset, I have chosen a 75%:25% split:
-75% of the data will be training data - X_train, y_train for training the model
-25% of the data will be testing data - X_test, y_test for testing the model     
+My first step was to split the dataset into training and testing dataset, I have chosen a 75%:25% split:  
+75% of the data will be training data - X_train, y_train for training the model (X_train is the features input and y_train is the species output)  
+25% of the data will be testing data - X_test, y_test for testing the model (X_test is the features input and y_test is the species output)    
 
     from sklearn.model_selection import train_test_split
     X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.25)
   
 #### Step 2 - Training and Testing Dataset shape <a name="trainandtest"></a>     
 
-To show the shape/size of the train and test data samples
-X_train is 75% of 150 = 112 rows of data in 4 columns (the 4 features/variables)
-y_train is 75% of 150 = 112 rows of the species column
-X_train is 25% of 150 = 38 rows of data in 4 columns (the 4 features/variables)
-y_train is 25% of 150 = 38 rows of the species column   
+To show the shape/size of the train and test data samples:  
+X_train is 75% of 150 = 112 rows of data in 4 columns (the 4 features/variables)  
+y_train is 75% of 150 = 112 rows of the species column   
+X_train is 25% of 150 = 38 rows of data in 4 columns (the 4 features/variables)  
+y_train is 25% of 150 = 38 rows of the species column     
+
 
     print("X_train shape: {}".format(X_train.shape))
     print("y_train shape: {}".format(y_train.shape))
     print("X_test shape: {}".format(X_test.shape))
     print("y_test shape: {}".format(y_test.shape))     
 
-![](images/4.0.2.traintestshape.PNG)   
+![](0.0.images/4.0.2.traintestshape.PNG)   
 
 
 #### Step 3 - Select an algorithm <a name="selectanalgorithm"></a>    
 
-Before selecting an algorithm, I need to decide if it is a classification or regression problem I need to resolve. 
-Fundamentally, classification is about predicting a target/class and regression is about predicting a quantity.
+Before selecting an algorithm, I need to decide if it is a classification or regression problem I need to resolve.   
+
+Fundamentally, classification is about predicting a target or class and regression is about predicting a quantity.  
 Classification is the problem of predicting a discrete target/class output for an example and regression is the problem of predicting a continuous quantity output for an example. 
 
 Predicting the species of a flower based on input measurements is a classification problem, therefore I select one of the classification algorithms to start train and validate the data.   
 
-I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new data point.   
+I have chosen the k-nearest neighbours (knn) classifier as the algorithm to make a prediction of the species for sample data of one new sample, as this algorithm has been described as easy to implement.    
+The KNN algorithm assumes that similar things exist in close proximity, that is similar things are near to each other.   
 k is the number of nearest neighbours and is the core deciding factor. I set the K number, the k number can be considered any fixed number k of neighbors in the training.   
 The algorithm calculates the distance between the new data or sample point with the training examples.   
 
@@ -563,7 +566,7 @@ We enter sample data (X_new) and show the shape of the data, it is one row (1 sa
     X_new = np.array([[5, 2.9, 1, 0.2]])  
     print("X_new.shape: {}".format(X_new.shape))     
 
-![](images/4.0.4.trainingshape.PNG)   
+![](0.0.images/4.0.4.trainingsetshape.PNG)   
 
 
 #### Step 5 - Predict Species <a name="predictspecies"></a>   
@@ -574,12 +577,12 @@ I now use the predict method of the knn object to predict the species of the sam
     print("Prediction: {}".format(prediction))
     print("Predicted target name: {}".format(iris['target_names'][prediction]))    
 
-![](images/4.0.5.predictspecies.PNG)   
+![](0.0.images/4.0.5.predictspecies.PNG)   
 
 
 #### Step 6 - Check model accuracy <a name="checkmodelaccuracy"></a>    
 
-One question that can be asked is how can I trust the results of the k nearest neighbours model.  
+Now that I have a prediction of the species, one question it poses is how can I trust the results of the k nearest neighbours model.  
 
 The test data that was created was not used to build the model, but I do know the correct species for each iris in the test set.   
 Therefore, I can make a prediction for each iris in the test data and compare it against its species, so I can know if the model is correctly predicting the species for a given flower.  
@@ -592,18 +595,18 @@ And then compare the prediction of the species 'y_pred' to the actual species 'y
     print("Test set predictions:\n {}".format(y_pred))
     print("Test set score (np.mean): {:.2f}".format(np.mean(y_pred == y_test)))  
 
-![](images/4.0.6.PNG) 
+![](0.0.images/4.0.6.PNG) 
 
 Another way to do this would be to use the score method of the knn object, which will compute the test set accuracy 
 
     print("Test set score (knn.score): {:.2f}".format(knn.score(X_test, y_test)))  
 
-![](images/4.0.6.knntestscore.PNG)   
+![](0.0.images/4.0.6.knntestscore.PNG)   
 
 
 
-For this model, the accuracy on the test set is 0.97, which means the model made the right prediction for 97% of the irises in the given dataset,  
-We can expect the model to be correct 97% of the time for predicting the species of new irises.  
+For this model, the accuracy on the test set is 0.97, which means the model made the right prediction for 97% of flower species.    
+We can expect the model to be correct 97% of the time for predicting the species of any new samples.  
 This is a high level of accuracy and it means the the K nearest neighbour model is trustworthy.  
 
 While the iris dataset and classification is simple, it is a good example to illustrate how a machine learning problem should be approached and how useful the outcome can be. 
@@ -611,8 +614,8 @@ This explains its popularity on being an introduction into machine learning.
 
 #### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
 
-An additional step that can be done is to spot check other algorithms to see their results. 
-I will test 6 different algorithms, this is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.  
+An additional step that can be done is to spot check other classification algorithms to see their results. 
+I will test 6 different popular classification algorithms, the selected algorithms are a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.  
 
     models = []
     models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
@@ -622,8 +625,15 @@ I will test 6 different algorithms, this is a good mixture of simple linear (LR 
     models.append(('NB', GaussianNB()))
     models.append(('SVM', SVC(gamma='auto')))
 
-NOTE NOTE NOTE evaluate each model in turn insert notes  
+Cross Validation (CV) splits the dataset into a specified number of the smaller sets (number of folds of the data).  
+Each model in turn is trained on these smaller sets whith some of the data held back for testing within each set/fold.    
+Each model is tested on the data held back for testing (i.e., it is used as a test set to compute a performance measure such as accuracy).   
 
+I set out the parameters of the Cross Validation by selecting the number of folds (10), setting shuffle to True and randon state to 1 to avoid repeat shuffling/splits and overlap of data.    
+
+There is an option to set the scorer object with the scoring parameter, I have set the scoring method to be accuracy to get the count of correct predictions.  
+Accruacy score will give the mean % of the number correct results and the standard deviation for this %.
+ 
     results = []
     names = []
     for name, model in models:
@@ -631,9 +641,10 @@ NOTE NOTE NOTE evaluate each model in turn insert notes
         cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
         results.append(cv_results)
         names.append(name)
-        print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))  
+        print('%s: accuracy %f with a standard deviation of (%f)' % (name, cv_results.mean(), cv_results.std()))
 
-![](images/4.0.7.modelcomparison.PNG)   
+
+![](0.0.images/4.0.7.modelcomparison.PNG)   
 
 We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model.  
 A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
@@ -642,54 +653,54 @@ A useful way to compare the samples of results for each algorithm is to create a
     plt.title('Algorithm Comparison')
     plt.show()    
 
-![](images/4.0.7.boxplots.PNG)   
+![](0.0.images/4.0.7.boxplots.PNG)   
 
 We can see that the box and whisker plots are squashed at the top of the range, with many evaluations achieving 100% accuracy, and some pushing down into the high 80% accuracies.  
 
 #### Step 8 - Final model selection <a name="finalmodelselection"></a>  
 
-The results in the previous section suggest that the LDA was the most accurate model (this is no surprise as )
-I will use this model as the final model.  
-Now we want to get an idea of the accuracy of the model on our validation set.  
-This will give us an independent final check on the accuracy of the best model.  
+The results in the previous section suggest that the LDA was the most accurate model, I will use this model as the final model.   
 
-I can fit the model on the entire training dataset and make predictions on the testing dataset.
+Now I want to get an idea of the accuracy of the model on the testing set.  
+This will give an independent final check on the accuracy of the best model.  
+
+Similar to Step 4 above, I pass the training set to the LDA algorithm. I fit the model on the entire training dataset and make predictions on the testing dataset.
     lda = LinearDiscriminantAnalysis()
     lda.fit(X_train, y_train)
-    predictions = lda.predict(X_test)
+    LDApredictions = lda.predict(X_test)
 
-We can evaluate the predictions by comparing them to the expected results in the testing set and then calculate classification accuracy, as well as a confusion matrix and a classification report.  
+I can evaluate the predictions of the testing data (LDApredictions) by comparing them to the expected results (y_test) in the testing set and then calculate classification accuracy, as well as a confusion matrix and a classification report.   
 
-    print(accuracy_score(y_test, predictions))
-    print(confusion_matrix(y_test, predictions))
-    print(classification_report(y_test, predictions))    
+    print(accuracy_score(y_test, LDApredictions))
+    print(confusion_matrix(y_test, LDApredictions))
+    print(classification_report(y_test, LDApredictions))    
 
 ![](images/4.0.7.finalmodelselection.PNG)   
 
-We can see that the accuracy is 1.0 or about 100% on the hold out dataset.    
+I can see that the accuracy is 1.0 or about 100% on the hold out dataset.    
 The confusion matrix provides an indication of the errors made.
 Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
   
 
 ## Project Conclusion <a name="projectconclusion"></a>     
 
-The initial data analysis shows a relativily small dataset of 50 samples for 3 species with no null values. However when checking for duplicates, it showed I had 3 instead of the expected 1. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset. The output you get out is only as good and as accurate as the data you put in. 
+The initial data analysis shows a relativily small dataset of 50 samples for 3 species with no null values. However when checking for duplicates, it showed I had 3 instead of the expected 1. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset. The output you get is only as good and as accurate as the data you put in. 
 
-The Mayplotlib and Seaborn libraries have many features to visually display the data for univariate, bivariate and multivariate analysis. While the Iris dataset is relatively small, these libraries come into their own when dealing with the large dataset that exist in today's world.  
-Starting with Univariate and Bivariate visuals, I build up my understanding of the dataset and started to see trends in petal length feature that indicate it would be the best feature to predict a species by.  
+The Mayplotlib and Seaborn libraries within Python have many features to visually display the data for univariate, bivariate and multivariate analysis. While the Iris dataset is relatively small, these libraries come into their own when dealing with the large datasets that exist in today's world.  
+Starting with Univariate and Bivariate visuals, I built up my understanding of the dataset and started to see trends in petal length feature that indicate it would be the best feature to predict a species by.  
 
 The analysis part of this project shows that the species Setosa is visually different from Veriscolor and Virginica.   
 The background of the dataset reveals that two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus".   
 This poses the question that if Veriscolor and Virginica were picked on the same day with the same apparatus and by the same person, and the Setosa was picked on a different day using a differen apparatus did it influence the outcome as the results of Veriscolor and Virginica are so similar. 
-However Ronald Fisher mentions in his paper that the he uses the "measurements of the flowers of fifty plants each of the two species Iris setosa and Iris versicolor, found growing together in the same colony and measured by Dr E. Anderson", my presumption is it was Setosa and Veriscolor that were measured on the same day.   
+However Ronald Fisher mentions in his paper that the he uses the "measurements of the flowers of fifty plants each of the two species Iris setosa and Iris versicolor, found growing together in the same colony and measured by Dr E. Anderson", my presumption is it was Setosa and Veriscolor that were measured on the same day and thus not affecting the outcome.   
 
 I then moved onto the Multivariate analysis, the Pairs plot showed the best feature combination to predict the species visually is by using the Petal Width/Petal length dimensions. If I had new sample data for the 4 features of the Iris flower, I could best predict the species visually by using these features.  
 
 However since Machine learning and artificial intelligence-based projects are what the future holds, I took the path of using Python to explore machine learning to predict the species.   
 
-Python supports machine learning through its extensive set of libraries especially the Scikit-learn library which I used in my testing.  I did a an 8 step process from training and testing the dataset, using the KNN algorithm to predict the species, checking the accuracy of the KNN model and finished up with checking it against some of the other machine learning algorithms with a final model selection based on the most accurate model which turned out to be LDA (Linear discriminant analysis).  
+Python supports machine learning through its extensive set of libraries especially the Scikit-learn library which I used in my testing.  I did a an 8 step process from training and testing the dataset, using the KNN algorithm to predict the species, checking the accuracy of the KNN model and finished up with checking it against some of the other machine learning algorithms to select the final model to predict species based on the most accurate model which turned out to be LDA (Linear discriminant analysis).  
 
-An interesting example of Machine learning is where a computer scientist developed a machine learning system called 'Giraffe' that can play International Master level of chess in 72 hours. It learnt by playing chess against itself. While the system was fed a massive dataset of moves from real chess matches, it used those moves in games it plays against itself, learning which worked in which situation, all the time building up its knowledge base. Fundamentally we are teaching technology to teach itself.   
+An interesting real life example of Machine learning is where a computer scientist developed a machine learning system called 'Giraffe' that can play International Master level of chess in 72 hours. It learnt by playing chess against itself. While the system was fed a massive dataset of moves from real chess matches, it used those moves in games it plays against itself, learning which worked in which situation, all the time building up its knowledge base. Fundamentally machine learning is teaching technology to teach itself.   
 
 While the Iris dataset is not on the scale of the chess example above, it is a great example of showing at an introduction level how we can use machine learning programming languages to think like a human brain does.
 
@@ -711,4 +722,6 @@ While the Iris dataset is not on the scale of the chess example above, it is a g
 14. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
 15. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
 16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot     
-17. https://qz.com/502325/an-ai-computer-learned-how-to-beat-almost-anyone-at-chess-in-72-hours/
+17. https://qz.com/502325/an-ai-computer-learned-how-to-beat-almost-anyone-at-chess-in-72-hours/  
+18. https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation 
+19. https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter

@@ -16,6 +16,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
+from sklearn.metrics import plot_confusion_matrix
 
 
 from sklearn.datasets import load_iris
@@ -139,7 +140,7 @@ for name, model in models:
 	cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
 	results.append(cv_results)
 	names.append(name)
-	print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
+	print('%s: accuracy %f with a standard deviation of (%f)' % (name, cv_results.mean(), cv_results.std()))
 
 # We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. 
 # A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
