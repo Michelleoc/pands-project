@@ -323,11 +323,9 @@ LDApredictions = lda.predict(X_test)
 # to the expected results in the testing set (y_test), i.e. the species of the test dataset.  
 # then calculate classification accuracy, as well as a confusion matrix and a classification report.
 
-print(accuracy_score(y_test, LDApredictions))
+print("Accruacy score: {:.3f}".format(accuracy_score(y_test, predictions)))
+
 print(confusion_matrix(y_test, LDApredictions))
-print(classification_report(y_test, LDApredictions))
 
 # can see that the accuracy is 1.0 or about 100% on the hold out dataset.
 # The confusion matrix provides an indication of the errors made.
-# Finally, the classification report provides a breakdown of each class by precision,
-# recall, f1-score and support showing excellent results (granted the validation dataset was small).

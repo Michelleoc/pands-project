@@ -42,14 +42,16 @@ sns.countplot(iris_df['species'])
 plt.show()
 
 setosa = iris_df.loc[iris_df["species"] == "Iris-setosa"]
-virginica = iris_df.loc[iris_df["species"] == "Iris-virginica"])
+#virginica = iris_df.loc[iris_df["species"] == "Iris-virginica"])
 versicolor = iris_df.loc[iris_df["species"] == "Iris-versicolor"]
 
 print(iris_df['species'].value_counts())
 
 # print (iris_df[setosa].value_counts())
 
-print = (iris_df(virginica).describe())  # boolean array expected for the condition not object 
+# print = (iris_df(virginica).describe())  # boolean array expected for the condition not object 
 # print(iris_df(setosa).describe())
 # print(iris_df['virginica'].describe())
 # print(iris_df['Iris-veriscolor'].describe())
+
+print(iris_df.describe(include='all'))

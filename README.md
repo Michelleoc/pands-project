@@ -47,7 +47,7 @@ The project task was to investigate, analyse and present my findings on the data
 
 The following files are my project submission:
 1. README file  
-2. Analysis.py (python script file) 
+2. Analysis.py (python script) 
 3. Iris dataset (iris.csv and irisoriginal.csv)   
 4. Variable Summary txt file  
 5. Plots Images folder
@@ -119,7 +119,7 @@ The Iris dataset consists of the following:
 
 Two of the three species were collected in the Gaspé Peninsula "all from the same pasture, and picked on the same day and measured at the same time by the same person with the same apparatus"    
 
-![](Iris_Image.png)  
+![](images/Iris_Image.png)  
 
 
 ### Use of Iris Dataset <a name="useofirisdataset"></a>  
@@ -134,16 +134,6 @@ The Iris setosa is noticeably different from the other two species.
 
 Therefore the dataset is often used in data mining, classification and clustering examples and to test algorithms.
  
-
-References
-
-
-
-1. https://www.ritchieng.com/machine-learning-iris-dataset/  
-2. https://en.wikipedia.org/wiki/Iris_flower_data_set
-3. https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5  
-5. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
-
 
 ## Loading and understanding the Iris dataset <a name="loadingandunderstandingtheirisdataset"></a> 
 
@@ -279,12 +269,6 @@ In contrast for Petal length, its 50% is higher than the median of 3.75. Therefo
 
 When I check for duplicates I expected to only see 1 as per Ronald Fisher's dataset but instead it shows 3 duplicates. It is noted on the UCI - Machine learning repository webpage that the dataset on their page differs from the data presented in Fishers article. This highlights the fundamental importance of ensuring you upload the most up to date and accurate dataset.   
 I changed my dataset to reflect the correct data and all analysis herein in the project are based on the correct data as listed on Ronald Fisher's article.  
-
-https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
-https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
-https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
-https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
 
 
 ## Data Visualisation <a name="datavisualisaton"></a> 
@@ -614,8 +598,8 @@ This explains its popularity on being an introduction into machine learning.
 
 #### Step 7 - Compare to other algorithms <a name="comparetootheralgorithms"></a>   
 
-An additional step that can be done is to spot check other classification algorithms to see their results. 
-I will test 6 different popular classification algorithms, the selected algorithms are a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.  
+An additional step that can be done is to spot check other classification algorithms to see their results.   
+I will test 6 different popular classification algorithms, the selected algorithms are a good mixture of simple linear (Linear Regression LR and Linear Discrimination Analysis LDA), nonlinear (K Nearest Neighhours KNN, Decision Tree Classifier CART, Gaussian NB and Support Vector Machine SVM) algorithms.  
 
     models = []
     models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
@@ -629,7 +613,8 @@ Cross Validation (CV) splits the dataset into a specified number of the smaller 
 Each model in turn is trained on these smaller sets whith some of the data held back for testing within each set/fold.    
 Each model is tested on the data held back for testing (i.e., it is used as a test set to compute a performance measure such as accuracy).   
 
-I set out the parameters of the Cross Validation by selecting the number of folds (10), setting shuffle to True and randon state to 1 to avoid repeat shuffling/splits and overlap of data.    
+I set out the parameters of the Cross Validation by selecting the number of folds/splits of the dataset (10).   
+I set shuffle to True and random state to 1 to avoid repeat shuffling/splits and overlap of data.    
 
 There is an option to set the scorer object with the scoring parameter, I have set the scoring method to be accuracy to get the count of correct predictions.  
 Accruacy score will give the mean % of the number correct results and the standard deviation for this %.
@@ -669,17 +654,17 @@ Similar to Step 4 above, I pass the training set to the LDA algorithm. I fit the
     lda.fit(X_train, y_train)
     LDApredictions = lda.predict(X_test)
 
-I can evaluate the predictions of the testing data (LDApredictions) by comparing them to the expected results (y_test) in the testing set and then calculate classification accuracy, as well as a confusion matrix and a classification report.   
+I can evaluate the predictions of the testing data (LDApredictions) by comparing them to the expected results (y_test) in the testing set and then calculate classification accuracy, as well as a confusion matrix.   
 
-    print(accuracy_score(y_test, LDApredictions))
+    print("Accruacy score: {:.3f}".format(accuracy_score(y_test, predictions)))
     print(confusion_matrix(y_test, LDApredictions))
-    print(classification_report(y_test, LDApredictions))    
+
 
 ![](images/4.0.7.finalmodelselection.PNG)   
 
 I can see that the accuracy is 1.0 or about 100% on the hold out dataset.    
 The confusion matrix provides an indication of the errors made.
-Finally, the classification report provides a breakdown of each class by precision, recall, f1-score and support showing excellent results (granted the validation dataset was small).  
+
   
 
 ## Project Conclusion <a name="projectconclusion"></a>     
@@ -706,22 +691,30 @@ While the Iris dataset is not on the scale of the chess example above, it is a g
 
 
 ## References <a name="references"></a>   
+ 
+2. https://en.wikipedia.org/wiki/Iris_flower_data_set
+3. https://towardsdatascience.com/the-iris-dataset-a-little-bit-of-history-and-biology-fb4812f5a7b5    
+1. https://www.ritchieng.com/machine-learning-iris-dataset/ 
+5. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 
 1. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 3. https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 4. https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
-5. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/  
+5. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/      
+
+16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot        
+10. https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/   
+9. https://kedro.readthedocs.io/en/stable/02_get_started/05_example_project.html
+11. https://www.kaggle.com/ash316/ml-from-scratch-with-iris    
+12. http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
+14. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
+15. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda    
+
 6. https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3
+13. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
 7. https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 8. https://machinelearningmastery.com/make-predictions-scikit-learn/
-9. https://kedro.readthedocs.io/en/stable/02_get_started/05_example_project.html
-10. https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/  
-11. https://www.kaggle.com/ash316/ml-from-scratch-with-iris  
-12. http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
-13. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/    
-14. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
-15. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda  
-16. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot     
-17. https://qz.com/502325/an-ai-computer-learned-how-to-beat-almost-anyone-at-chess-in-72-hours/  
 18. https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation 
 19. https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter
+
+17. https://qz.com/502325/an-ai-computer-learned-how-to-beat-almost-anyone-at-chess-in-72-hours/  

@@ -16,7 +16,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
-from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import plot_confusion_matrix as cm
 
 
 from sklearn.datasets import load_iris
@@ -140,7 +140,7 @@ for name, model in models:
 	cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
 	results.append(cv_results)
 	names.append(name)
-	print('%s: accuracy %f with a standard deviation of (%f)' % (name, cv_results.mean(), cv_results.std()))
+	print('%s: accuracy %f with a standard deviation of (%f) ' % (name, cv_results.mean(), cv_results.std()))
 
 # We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. 
 # A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
@@ -171,6 +171,18 @@ predictions = lda.predict(X_test)
 print(accuracy_score(y_test, predictions))
 print(confusion_matrix(y_test, predictions))
 print(classification_report(y_test, predictions))
+
+print("Accruacy score: {:.3f}".format(accuracy_score(y_test, predictions)))
+
+class_names = iris.target_names
+cnf_matrix = confusion_matrix(y_test, predictions) 
+np.set_printoptions(precision=2)
+plt.figure()
+plot_confusion_matrix(cnf_matrix)
+plt.show()
+
+# confusion = plot_confusion_matrix(X_test, y_test, predictions)
+# plt.show()
 
 # We can see that the accuracy is 1.0 or about 100% on the hold out dataset.
 # The confusion matrix provides an indication of the errors made.
