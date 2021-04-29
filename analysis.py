@@ -21,10 +21,12 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split 
 
-# Import the dataset from iris.csv file 
+# Import the dataset from iris.csv file (after finding the duplicates this was changed to irisoriginal.csv as I had 2 iris files) 
 path = ""
 filenameForIrisData = path + "irisoriginal.csv"
 dataframe = pd.read_csv(filenameForIrisData)
+
+# I have 2 dataframes: iris_dataframe using the original incorrect file and later on I use iris_df for the correct file)
 
 # Rename column titles
 # https://www.geeksforgeeks.org/python-pandas-dataframe-rename/
@@ -73,6 +75,7 @@ with open("Variable_Summary.txt", "wt") as f:
 
 # The duplicate row analysis above highlighted that my original dataset was incorrect (only 1 duplicate should exist, not 3).  
 # Therefore I import the correct iris dataset.   
+# I now use the iris.csv and the iris_df dataset
 
 path = ""
 filenameForIrisData = path + "iris.csv"
@@ -95,16 +98,19 @@ sns.histplot(data=iris_df, x="Sepal_length(cm)", color="skyblue", ax=axs[0, 0])
 sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
 sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
 sns.histplot(data=iris_df, x="Petal_width(cm)", color="teal", ax=axs[1, 1])
+# Save and show the plot
 plt.savefig("Plot_Images/Features_Histogram.png")
 plt.show()
 
 # Plotting, displaying and saving a histogram of each variable to png files  
 # https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda
-# https://www.geeksforgeeks.org/box-plot-and-histogram-exploration-on-iris-data/
 
 # FacetGrid within Seaborn is a multi-plot grid to help visualise distribution of a variable
 # iris_df = defining the data input
 # hue - allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual  
+# histplot to determine a histogram output
+# adding in feature by feature on separate rows 
+# add_legend - to add a legend to each visual 
 # plt.savefig = saving the histogram as an image to the folder  
 # plt.show() = displaying the histogram  
 
@@ -119,14 +125,14 @@ plt.savefig("Plot_Images/Sepal_Width.png")
 plt.show()
 
 
-# https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
-
 # Boxplot grouped by Species
 # https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 # To show 4 Boxplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required. 
 # The 3rd value in the subplot indicates where on the output the plot is shown, as follows 1 - Top Left, 2 - Top Right, 3 - Bottom Left, 4 - Bottom Right, 
 # for example (2,2,3) would show onthe bottom left of the output.  
-# On the plot the x axis is the species type, y axis is the attribute 
+# On the plot the x axis is the species type, y axis is the feature
+# dataset = iris_df 
+
 plt.figure(figsize=(15,10))    
 plt.subplot(2,2,1)    
 sns.boxplot(x='species',y='Sepal_length(cm)',data=iris_df)     
@@ -141,10 +147,12 @@ plt.show()
 
 # Violinplot grouped by series
 # To show how the length and width vary according to the species
-# To show 4 Violinplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required. 
+# To show 4 Violinplots on the one output requires a 2 x 2 (2 columns and 2 rows), therefore subplot(2,2) is required. Similar to boxplot
 # The 3rd value in the subplot indicates where on the output the plot is shown, as follows 1 - Top Left, 2 - Top Right, 3 - Bottom Left, 4 - Bottom Right, 
 # for example (2,2,3) would show onthe bottom left of the output.  
-# On the plot the x axis is the species type, y axis is the attribute 
+# On the plot the x axis is the species type, y axis is the feature 
+# dataset = iris_df 
+
 plt.figure(figsize=(15,10))
 plt.subplot(2,2,1)
 sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
@@ -161,7 +169,11 @@ plt.show()
 # A “pairs plot” is also known as a scatterplot, in which one variable in the same data row is matched with another variable's value,
 #  like this: Pairs plots are just elaborations on this showing all variables paired with all the other variables.
 # Scatterplot matrices are very good visualization tools and may help identify correlations or lack of it
-# https://www.kaggle.com/biphili/seaborn-matplotlib-iris-data-visualization-code-1
+# Each iris species scatters plots are represented in different colours 
+# the 'hue' option allows a variable that determines the colour of the plot elements
+# in this case it is species that drives the different colours on the visual. 
+# Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen a density plot kde
+
 sns.pairplot(iris_df, hue="species", diag_kind="kde")
 plt.savefig("Plot_Images/Pairsplot.png")
 plt.show()
@@ -173,17 +185,17 @@ print(iris_df.corr())
 # Heatmap used to show correlation. 
 # As I plan to train algorithms, the number of features and their correlation plays an important role. 
 # If there are features and many of the features are highly correlated, then training an algorithm with all the featues will reduce the accuracy. 
-# Thus features selection should be done carefully. This dataset has less featues but still we will see the correlation. 
 # https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/
 
 # To show the values on the heatmap, insert "annot = True"
-# cmap to pick the colour palette of your choice
-# The Sepal Width and Length are not correlated The Petal Width and Length are highly correlated
+# cmap to pick the colour palette of your choice, I have chosen the "rocket" colour
 # https://www.kaggle.com/ash316/ml-from-scratch-with-iris
 plt.figure(figsize=(15,10))
 sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
 plt.savefig("Plot_Images/Heatmap.png")
 plt.show()
+
+# MACHINE LEARNING CODE 
 
 from sklearn.datasets import load_iris
 iris=load_iris()
@@ -221,7 +233,7 @@ print("y_test shape: {}".format(y_test.shape))
 # the algorithm finds the point in the training set, then it assigns the label of this training point to the new data point.
 # The k in k-nearest neighbors signifies that instead of using only the closest neighbor to the new data point, 
 # we can consider any fixed number k of neighbors in the training
-# We can now make a prediction using the majority class among them. For our example, we will use one neighbor (k=1).
+# i have chosen one neighbor (k=1), this is known as nearest neighbour algorithm 
 knn = KNeighborsClassifier(n_neighbors=1)
 
 # I now use the fit method of the knn object, 
@@ -230,54 +242,55 @@ knn = KNeighborsClassifier(n_neighbors=1)
 # This builds up our model on the training set.
 knn.fit(X_train, y_train)
 
-# We enter sample data
+# We enter sample data in as an array
 X_new = np.array([[5, 2.9, 1, 0.2]])
 # Show the shape of the data, it is one row (1 sample) with 4 columns of data (the 4 features/variables sepal and petal measurements)
 print("X_new.shape: {}".format(X_new.shape))
 
 # I now use the predict method of the knn object to predict the species of the sample data X_new
 prediction = knn.predict(X_new)
-# prediction to be species '0'
+# output prediction of species '0', '1' or '2'
 print("Prediction: {}".format(prediction))
-# species '0' equals setosa
+# output the species name 
 print("Predicted target name: {}".format(iris['target_names'][prediction]))
 
 
 
-# But how can we trust the results of the model 
-# The test set that was created was not used to build the model, but we do know the correct species for each iris in the test set. 
-# Therefore, we can make a prediction for each iris in the test data and compare it against its species — so we can know if the model 
+# But how can I trust the results of the model 
+# The test set that was created was not used to build the model, but I do know the correct species for each iris in the test set. 
+# Therefore, I can make a prediction for each iris in the test data and compare it against its species — so I can know if the model 
 # is correctly predicting the species for a given flower.
 
-# To measure how well the model works, we can obtain the accuracy - 
-# the fraction of flowers for which the right species was predicted (number that we can calculate using the NumPy “mean” method, comparing both datasets)
-
+# To measure how well the model works, I can obtain the accuracy - 
+# the fraction of flowers for which the right species was predicted 
+# (number that can be calculated using the NumPy “mean” method, comparing both datasets)
 # using the X_test data containing the testing data of the 4 features 
 y_pred = knn.predict(X_test)
-# we print out the prediction of the species using only the 4 features
-print("Test set predictions:\n {}".format(y_pred))
-# we then compare the prediction of the species 'y_pred' to the actual species 'y_test'
-print("Test set score (np.mean): {:.2f}".format(np.mean(y_pred == y_test)))
+
+# we print out the predictions of the species using only the 4 features
+print("Test set predictions:\n {}".format(y_pred))  
+
+# we then compare the predictions of the species 'y_pred' to the actual species 'y_test'
+print("Test set score (np.mean): {:.2f}".format(np.mean(y_pred == y_test)))  
+
 # another way to do this would be to use the score method of the knn object, which will compute the test set accuracy
 print("Test set score (knn.score): {:.2f}".format(knn.score(X_test, y_test)))
 
 # For this model, the accuracy on the test set is 0.97, which means the model made the right prediction for 97% of the irises 
 # in the given dataset. We can expect the model to be correct 97% of the time for predicting the species of new irises.
-# This is a high level of accuracy and it means that our model may be trustworthy enough to use
-# 
-# While the iris dataset and classification is simple, it is a good example to illustrate 
-# how a machine learning problem should be approached and how useful the outcome can be to a potential user
+# This is a high level of accuracy
 
 # https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 # https://machinelearningmastery.com/make-predictions-scikit-learn/
 
 # I spot Check other Algorithms to see their results. 
-# We get an idea from the plots that some of the classes are partially linearly separable in some dimensions, so we are expecting generally good result
-# we will test 6 different algorithms 
+# Test 6 different algorithms 
 # This is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.
+# for LR, a solver must be selected for the algorithm to compute. I have selected the Liblinear as it applies automatic parameter selection
+# for SVC, gamma relates to the scale, I have set it to auto 
 
 models = []
-models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+models.append(('LR', LogisticRegression(solver='liblinear')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
@@ -285,37 +298,47 @@ models.append(('NB', GaussianNB()))
 models.append(('SVM', SVC(gamma='auto')))
 
 # evaluate each model in turn 
-# Cross-validation is primarily used in applied machine learning to estimate the skill of a machine learning model on unseen data.
+# Cross-validation is primarily used in applied machine learning to estimate the skill of a machine learning model on unseen data. 
+# start with creating a results and names list  
 results = []
 names = []
+
 for name, model in models:
 	# With KFolds and shuffle, the data is shuffled once at the start, and then divided into the number of splits set out (in this case 10 splits)
-	# The test set does not overlap with the training set 
+	# I set shuffle to True and random state to 1 to avoid repeat shuffling/splits and overlap of data.
 	kfold = StratifiedKFold(n_splits=10, random_state=1, shuffle=True)
-
+	# Calculate the results based on the model, the training data. 
+	# There is an option to set the scorer object with the scoring parameter
+	# I have set the scoring method to be accuracy to get the count of correct predictions.
 	cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
+	# populate the results into the list  
 	results.append(cv_results)
 	names.append(name)
+	# print the results of each model 
+	# Accruacy score will give the mean % of the number correct results and the standard deviation for this %
 	print('%s: accuracy %f with a standard deviation of (%f)' % (name, cv_results.mean(), cv_results.std()))
 
 # We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. 
 # A useful way to compare the samples of results for each algorithm is to create a box and whisker plot for each distribution and compare the distributions.
 
+# using the results and the model names, generate a boxplot 
 plt.boxplot(results, labels=names)
 plt.title('Algorithm Comparison')
-plt.show()
+plt.show() 
+
 # We can see that the box and whisker plots are squashed at the top of the range, 
 # with many evaluations achieving 100% accuracy, and some pushing down into the high 80% accuracies.
 
 # Make predictions on test/validation dataset 
 
-# The results in the previous section suggest that the LDA was perhaps the most accurate model. I will use this model as our final model.
-# Now I want to get an idea of the accuracy of the model on our testing set.
-# This will give an independent final check on the accuracy of the best model. 
+# Based on the results in the previous section pick the most accurate model as the final model
+# in this case it is the LDA 
+# Now I calculate the accuracy of the model on the testing set.
 
 # Similar to Step 4 above, I pass the training set to the LDA algorithm. I fit the model on the entire training dataset 
 lda = LinearDiscriminantAnalysis()
-lda.fit(X_train, y_train)
+lda.fit(X_train, y_train) 
+
 # And then make predictions on the testing dataset
 # the predictions from the algorithm are labelled as LDApredicitions. 
 LDApredictions = lda.predict(X_test)
@@ -323,11 +346,11 @@ LDApredictions = lda.predict(X_test)
 # Evaluate predictions
 # Evaluate the predictions (LDApredicitions) of the LDA model by comparing them  
 # to the expected results in the testing set (y_test), i.e. the species of the test dataset.  
-# then calculate classification accuracy, as well as a confusion matrix and a classification report.
+# then calculate classification accuracy to 3 decimal places, as well as a confusion matrix.
 
 print("Accruacy score: {:.3f}".format(accuracy_score(y_test, LDApredictions)))
 
 print(confusion_matrix(y_test, LDApredictions))
 
-# can see that the accuracy is 1.0 or about 100% on the hold out dataset.
+# can see that the accuracy is 1.0/100% on the testing dataset.
 # The confusion matrix provides an indication of the errors made.

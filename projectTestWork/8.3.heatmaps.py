@@ -26,3 +26,7 @@ print(iris_df.corr())
 plt.figure(figsize=(15,10))
 sns.heatmap(iris_df.corr(), annot = True, cmap = 'rocket') 
 plt.show()
+
+plt.figure(figsize=(15,10))
+sns.heatmap(iris_df.corr(), annot = True, cmap = 'cubehelix') 
+plt.show()

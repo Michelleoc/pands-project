@@ -442,10 +442,10 @@ A pairs plot gives a scatter plot of different features. The Pairsplot produces 
 
 In seaborn library within python the pairsplot function is very useful to scatter plot all the features at once instead of plotting them individually.  
 
-Each iris species scatters plots are represented in different colours, the 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual.   
-Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen a density plot.  
+Each iris species scatters plots are represented in different colours, the 'hue' option allows a variable that determines the colour of the plot elements, in this case it is species that drives the different colours on the visual. Diag_kind="kde" determines that the plot of the diagonal subplots, I have chosen a density plot.  
 
-For each pair of variables, we can use a scatter plot to visualize their joint distribution 
+For each pair of variables, we can use a scatter plot to visualize their joint distribution   
+
     sns.pairplot(iris_df, hue="species", diag_kind="kde")  
     plt.savefig("Plot_Images/Pairsplot.png")  
     plt.show()    
@@ -576,7 +576,9 @@ The KNN algorithm assumes that similar things exist in close proximity, that is 
 k is the number of nearest neighbours and is the core deciding factor. I set the K number, the k number can be considered any fixed number (k) of neighbors in the training.    
 
 The model picks 'k' (as determined by the user) entries in the training data which are closest to the new data point and then is does a majority vote, that is it takes the most common species among those 'k' entries to be the species of the new data point. We can now make a prediction using the majority class among them.
-When k=1, the algorithm is know as the nearest neighbour algorithm, for my example I will use one neighbor (k=1).   
+When k=1, the algorithm is know as the nearest neighbour algorithm, for my example I will use one neighbor (k=1).    
+
+    knn = KNeighborsClassifier(n_neighbors=1)  
 
 
 #### Step 4 - Pass the training set to the algorithm <a name="passthetrainingset"></a>    
@@ -585,7 +587,6 @@ When k=1, the algorithm is know as the nearest neighbour algorithm, for my examp
 I now use the fit method of the knn object, to train the algorithm with the training data (X_train containing the training data of the 4 features) and the training output (y_train containing the corresponding species), this builds up the model on the training set.  
 I enter sample data (X_new) and show the shape of the data, it is one row (1 sample) with 4 columns of data (the 4 features/variables sepal and petal measurements).   
 
-    knn = KNeighborsClassifier(n_neighbors=1)  
     knn.fit(X_train, y_train)  
     X_new = np.array([[5, 2.9, 1, 0.2]])  
     print("X_new.shape: {}".format(X_new.shape))     
@@ -687,7 +688,7 @@ The box and whisker plots are squashed at the top of the range, with many evalua
 #### Step 8 - Final model selection <a name="finalmodelselection"></a>    
   
 
-The results in the previous section suggest that the LDA was the most accurate model, I will use this model as the final model.   
+The results in the previous section suggest that the LDA was the joint most accurate model along with SVM. I will use the LDA model as the final model.   
 
 Now I want to get an idea of the accuracy of the model on the testing set. This will give an independent final check on the accuracy of the best model.  
 
@@ -699,7 +700,7 @@ Similar to Step 4 above, I pass the training set to the LDA algorithm. I fit the
 
 I can evaluate the predictions of the testing data (LDApredictions) by comparing them to the expected results (y_test) in the testing set and then calculate classification accuracy, as well as a confusion matrix.   
 
-    print("Accruacy score: {:.3f}".format(accuracy_score(y_test, predictions))    
+    print("Accruacy score: {:.3f}".format(accuracy_score(y_test, LDApredictions))    
 
 ![](images/5.0.1.Accruacyscore.PNG)   
 
@@ -707,7 +708,7 @@ I can evaluate the predictions of the testing data (LDApredictions) by comparing
 
 ![](images/5.0.1.confusionmatrix.PNG)   
 
-I can see that the accuracy is 1.0 or about 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
+I can see that the accuracy is 1.0 or 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
 
   
 ## Project Conclusion <a name="projectconclusion"></a>       
@@ -747,17 +748,19 @@ _Loading and understanding the Iris dataset_
 1. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/
 2. https://www.kaggle.com/adityabhat24/iris-data-analysis-and-machine-learning-python
 3. https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
-4. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/      
+4. https://www.geeksforgeeks.org/python-basics-of-pandas-using-iris-dataset/        
+5. https://www.geeksforgeeks.org/python-pandas-dataframe-rename/   
   
 _Data Visualisation_
-1. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot        
+1. https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn
 2. https://stackabuse.com/ultimate-guide-to-heatmaps-in-seaborn-with-python/   
 3. https://kedro.readthedocs.io/en/stable/02_get_started/05_example_project.html
 4. https://www.kaggle.com/ash316/ml-from-scratch-with-iris    
 5. http://www.cse.msu.edu/~ptan/dmbook/tutorials/tutorial3/tutorial3.html
 6. https://medium.com/@avulurivenkatasaireddy/exploratory-data-analysis-of-iris-data-set-using-python-823e54110d2d
 7. https://www.kaggle.com/dhruvmak/iris-flower-classification-with-eda    
-8. https://www.python-graph-gallery.com/25-histogram-with-several-variables-seaborn
+8. https://stats.stackexchange.com/questions/392517/how-can-one-interpret-a-heat-map-plot      
+9. https://www.c-sharpcorner.com/article/a-first-machine-learning-project-in-python-with-iris-dataset/  
   
 _Machine Learning_  
 1. https://medium.com/gft-engineering/start-to-learn-machine-learning-with-the-iris-flower-classification-challenge-4859a920e5e3

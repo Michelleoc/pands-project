@@ -126,7 +126,7 @@ print("Test set score (knn.score): {:.2f}".format(knn.score(X_test, y_test)))
 # This is a good mixture of simple linear (LR and LDA), nonlinear (KNN, CART, NB and SVM) algorithms.
 
 models = []
-models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+models.append(('LR', LogisticRegression(solver='liblinear')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
