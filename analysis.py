@@ -1,6 +1,8 @@
-# Investigating the Iris Dataset
+# Investigating and analysing the Iris Dataset
+# 2021 Programming and Scripting project 
 # Author : Michelle O'Connor
 
+# Import all the required libaries 
 import pandas as pd             
 import numpy as np              
 import seaborn as sns           
@@ -92,7 +94,7 @@ fig, axs = plt.subplots(2, 2, figsize=(7, 7))
 sns.histplot(data=iris_df, x="Sepal_length(cm)", color="skyblue", ax=axs[0, 0])
 sns.histplot(data=iris_df, x="Sepal_width(cm)", color="olive", ax=axs[0, 1])
 sns.histplot(data=iris_df, x="Petal_length(cm)", color="gold", ax=axs[1, 0])
-sns.histplot(data=iris_df, x="Sepal_width(cm)", color="teal", ax=axs[1, 1])
+sns.histplot(data=iris_df, x="Petal_width(cm)", color="teal", ax=axs[1, 1])
 plt.savefig("Plot_Images/Features_Histogram.png")
 plt.show()
 
@@ -145,13 +147,13 @@ plt.show()
 # On the plot the x axis is the species type, y axis is the attribute 
 plt.figure(figsize=(15,10))
 plt.subplot(2,2,1)
-sns.violinplot(x='species',y='Petal_length(cm)',data=iris_df)
-plt.subplot(2,2,2)
-sns.violinplot(x='species',y='Petal_width(cm)',data=iris_df)
-plt.subplot(2,2,3)
 sns.violinplot(x='species',y='Sepal_length(cm)',data=iris_df)
+plt.subplot(2,2,2)
+sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df)
+plt.subplot(2,2,3)
+sns.violinplot(x='species',y='Petal_length(cm)',data=iris_df)
 plt.subplot(2,2,4)
-sns.violinplot(x='species',y='Sepal_width(cm)',data=iris_df) 
+sns.violinplot(x='species',y='Petal_width(cm)',data=iris_df) 
 plt.savefig("Plot_Images/Violin_plot.png")
 plt.show()
 
@@ -323,7 +325,7 @@ LDApredictions = lda.predict(X_test)
 # to the expected results in the testing set (y_test), i.e. the species of the test dataset.  
 # then calculate classification accuracy, as well as a confusion matrix and a classification report.
 
-print("Accruacy score: {:.3f}".format(accuracy_score(y_test, predictions)))
+print("Accruacy score: {:.3f}".format(accuracy_score(y_test, LDApredictions)))
 
 print(confusion_matrix(y_test, LDApredictions))
 

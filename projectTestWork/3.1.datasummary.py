@@ -55,3 +55,5 @@ print(iris_df['species'].value_counts())
 # print(iris_df['Iris-veriscolor'].describe())
 
 print(iris_df.describe(include='all'))
+
+print(iris_df.groupby("species").describe())
