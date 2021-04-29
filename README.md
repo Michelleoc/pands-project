@@ -645,7 +645,7 @@ An additional step that can be done is to spot check other classification algori
 I will test 6 different popular classification algorithms, the selected algorithms are a good mixture of simple linear (LR Linear Regression and LDA Linear Discrimination Analysis), nonlinear (KNN K Nearest Neighhours, CART Decision Tree Classifier, NB GaussianNB and SVM Support Vector Machine) algorithms.  
 
     models = []
-    models.append(('LR', LogisticRegression(solver='liblinear', multi_class='ovr')))
+    models.append(('LR', LogisticRegression(solver='liblinear')))
     models.append(('LDA', LinearDiscriminantAnalysis()))
     models.append(('KNN', KNeighborsClassifier()))
     models.append(('CART', DecisionTreeClassifier()))
@@ -688,7 +688,7 @@ The box and whisker plots are squashed at the top of the range, with many evalua
 #### Step 8 - Final model selection <a name="finalmodelselection"></a>    
   
 
-The results in the previous section suggest that the LDA was the joint most accurate model along with SVM. I will use the LDA model as the final model.   
+The results in the previous section suggest that the LDA was the most accurate model. I will use the LDA model as the final model.   
 
 Now I want to get an idea of the accuracy of the model on the testing set. This will give an independent final check on the accuracy of the best model.  
 
@@ -708,7 +708,7 @@ I can evaluate the predictions of the testing data (LDApredictions) by comparing
 
 ![](images/5.0.1.confusionmatrix.PNG)   
 
-I can see that the accuracy is 1.0 or 100% on the hold out dataset. The confusion matrix provides an indication of the errors made.
+I can see that the accuracy is 0.947 or 94.7% on the testing dataset. The confusion matrix provides an indication of the errors made, any numbers outside of the diagional row are the errors, in this case it was 2. 
 
   
 ## Project Conclusion <a name="projectconclusion"></a>       
