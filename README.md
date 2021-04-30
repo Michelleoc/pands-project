@@ -277,6 +277,7 @@ I then build upon this to extract different views of the data:
 To extract this data into a newly created single text file, we need to make the output in a string format using str. 
 
         with open("Variable_Summary.txt", "wt") as f:  
+        print ("Summary of Iris Dataset variables (4 Features and the class of Species)\n", file = f)     
         print ("Shape of Data \n", str(iris_df.shape),"\n", file = f)  
         print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)  
         print ("Statistical Data by feature \n", str(iris_df.describe()),"\n", file = f)  
