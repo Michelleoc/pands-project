@@ -19,7 +19,8 @@ iris_df = df.rename(columns = {"sepallength" : "sepallengthcm", "sepalwidth" : "
 
 
 with open("output2.txt", "wt") as f:
-    # f.write("blah the blah \n")
+    # f.write("blah the blah \n")  
+    print ("Summary of the Iris Dataset variables (Features and Species) \n", file = f) 
     print ("Shape of Data \n", str(iris_df.shape),"\n", file = f) # can also use print () option to add/write data into the text file
     print ("Count by Species \n", str(iris_df.groupby('species').size()),"\n", file = f)
     print ("Statistical Data of Dataset by feature \n", str(iris_df.describe()),"\n", file = f)

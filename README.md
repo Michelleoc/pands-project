@@ -708,7 +708,7 @@ I can evaluate the predictions of the testing data (LDApredictions) by comparing
 
 ![](images/5.0.1.confusionmatrix.PNG)   
 
-I can see that the accuracy is 0.947 or 94.7% on the testing dataset. The confusion matrix provides an indication of the errors made, any numbers outside of the diagional row are the errors, in this case it was 2. 
+I can see that the accuracy is 0.947 or 94.7% on the testing dataset. The confusion matrix provides an indication of the errors made, any numbers outside of the diagional row are the errors, in this scenario, 36 accurate predictions and 2 wrong predictions were made. 
 
   
 ## Project Conclusion <a name="projectconclusion"></a>       

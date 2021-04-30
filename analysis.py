@@ -67,11 +67,12 @@ print (iris_dataframe[iris_dataframe.duplicated()])
 # input has to be in string format
 # class lectures showed how to export to a newly created txt file
 # https://towardsdatascience.com/how-to-use-groupby-and-aggregate-functions-in-pandas-for-quick-data-analysis-c19e7ea76367
-with open("Variable_Summary.txt", "wt") as f:
-    print ("Shape of Data \n", str(iris_dataframe.shape),"\n", file = f) 
-    print ("Count by Species \n", str(iris_dataframe.groupby('species').size()),"\n", file = f)
-    print ("Statistical Data feature \n", str(iris_dataframe.describe()),"\n", file = f)
-    print ("Summary of each feature by species \n",str(iris_dataframe.groupby("species").describe()), "\n", file = f)
+with open("Variable_Summary.txt", "wt") as f:  
+	print ("Summary of Iris Dataset variables (4 Features and the class of Species)\n", file = f)   
+	print ("Shape of Data \n", str(iris_dataframe.shape),"\n", file = f)
+	print ("Count by Species \n", str(iris_dataframe.groupby('species').size()),"\n", file = f)
+	print ("Statistical Data feature \n", str(iris_dataframe.describe()),"\n", file = f)
+	print ("Summary of each feature by species \n",str(iris_dataframe.groupby("species").describe()), "\n", file = f)
 
 # The duplicate row analysis above highlighted that my original dataset was incorrect (only 1 duplicate should exist, not 3).  
 # Therefore I import the correct iris dataset.   
